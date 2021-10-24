@@ -12,6 +12,9 @@ const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}
 });
 const basename = path.basename(__filename);
 
+// --------------  Probar si se esta conectando correctamente -------------------
+sequelize.authenticate().then(() => console.log("Activo")).catch((e) => console.log("Error:", e))
+
 const modelDefiners = [];
 
 // Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners
@@ -30,10 +33,12 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Videogame } = sequelize.models;
+const { Videogame, Genre } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
+Videogame.belongsToMany(Genre, { through: "videogame_info" })
+Genre.belongsToMany(Videogame, { through: "videogame_info" })
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
