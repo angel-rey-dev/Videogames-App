@@ -12,9 +12,6 @@ const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}
 });
 const basename = path.basename(__filename);
 
-// --------------  Probar si se esta conectando correctamente -------------------
-sequelize.authenticate().then(() => console.log("Activo")).catch((e) => console.log("Error:", e))
-
 const modelDefiners = [];
 
 // Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners

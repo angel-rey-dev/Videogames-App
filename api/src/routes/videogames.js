@@ -4,24 +4,30 @@ const videogamesRouter = Router();
 // ---- For API request  ------
 const axios = require('axios');
 require('dotenv').config();
-const {
-    API_KEY
-} = process.env;
+const { API_KEY } = process.env;
 // ----------------------------
 
 // Get data form API
 const getApiData = async () => {
     try {
-        const response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}`)
-        const data = await response.data.results.map(game => {
-            const { name, background_image,genres } = game;
-            return {
-                name,
-                background_image,
-                genres: genres.map(el => el.name)
-            }
-        })
-        return data
+        // const response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}`)
+        let page = 1
+        let games = []
+        while (page !== 4) {
+            let response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page_size=50&page=${page}`)
+            // let response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=${page}`)
+            let data = await response.data.results.map(game => {
+                const { name, background_image, genres } = game;
+                return {
+                    name,
+                    background_image,
+                    genres: genres.map(el => el.name)
+                }
+            })
+            games =  [...games, ...data]
+            page++
+        }
+        return games
     } catch (error) {
         return error
     }
@@ -30,10 +36,10 @@ const getApiData = async () => {
 const getDbData = async () => {
     try {
         const dbInfo = await Videogame.findAll({
-            incude: {
+            include: {
                 model: Genre,
                 attributes: ["name"],
-                throught: {
+                through: {
                     attributes: [],
                 }
             }
@@ -64,6 +70,7 @@ videogamesRouter.get("/", async (req, res) => {
         const filteredGames = await allGames.filter(game => {
             return game.name.toLowerCase().includes(name.toLowerCase())
         })
+        // ------------ Falta agregar un flitro para que solo sean 15 juegos -----------------
         filteredGames.length
             ? res.status(200).json(filteredGames)
             : res.status(404).send("Not Games Found")
