@@ -14,8 +14,8 @@ module.exports = (sequelize) => {
       allowNull: false,
       primaryKey: true
     },
-    descripcion: {
-      type: DataTypes.TEXT,
+    description: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
     // background_image: {
@@ -27,11 +27,11 @@ module.exports = (sequelize) => {
     //   allowNull: true,
     // },
     platforms: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     released: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     rating: {

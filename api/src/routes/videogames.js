@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const videogamesRouter = Router();
+const { Videogame, Genre } = require('../db')
 
 // ---- For API request  ------
 const axios = require('axios');
@@ -7,31 +8,30 @@ require('dotenv').config();
 const { API_KEY } = process.env;
 // ----------------------------
 
+// const response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}`)
+// let response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=${page}`)
+
 // Get data form API
 const getApiData = async () => {
-    try {
-        // const response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}`)
-        let page = 1
-        let games = []
-        while (page !== 4) {
-            let response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page_size=50&page=${page}`)
-            // let response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=${page}`)
-            let data = await response.data.results.map(game => {
-                const { name, background_image, genres } = game;
-                return {
-                    name,
-                    background_image,
-                    genres: genres.map(el => el.name)
-                }
-            })
-            games =  [...games, ...data]
-            page++
-        }
-        return games
-    } catch (error) {
-        return error
-    }
+    const apiUrl = page => axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=${page}`)
+    const requests = [apiUrl(1), apiUrl(2), apiUrl(3), apiUrl(4)]
+    const games = []
+    await Promise.all(requests)
+        .then(responses => {
+            responses.forEach(response => games.push(
+                response.data.results.map(game => {
+                    const { name, background_image, genres } = game;
+                    return {
+                        name,
+                        background_image,
+                        genres: genres.map(el => el.name)
+                    }
+                })
+            ))
+        });
+    return games.flat()
 }
+
 // Get data from DataBase
 const getDbData = async () => {
     try {
@@ -75,6 +75,7 @@ videogamesRouter.get("/", async (req, res) => {
             ? res.status(200).json(filteredGames)
             : res.status(404).send("Not Games Found")
     } else {
+        // res.status(200).json(allGames)
         res.status(200).json(allGames)
     }
 })

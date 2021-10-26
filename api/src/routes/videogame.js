@@ -45,34 +45,41 @@ videogameRouter.get("/:id", async (req, res) => {
 // --> POST -->  videogame/
 videogameRouter.post("/", async (req, res) => {
     //     // ---> Get data from request.body
-    let { name, description, released, rating, genres, platforms } = req.body;
+    let {
+        name,
+        description,
+        released,
+        rating,
+        genres,
+        platforms,
+        createdInDb
+    } = req.body;
     platforms = platforms.join(', ')
 
     try {
         //     // ---> Create game using Videogame model
-        const gameCreated = await Videogame.findOrCreate({ //devuelvo un array (OJOOO!!!!)
-            where: {
-                name,
-                description,
-                released,
-                rating,
-                platforms,
-                createdInDb
-            }
+        const gameCreated = await Videogame.create({ //devuelvo un array (OJOOO!!!!)
+            name,
+            description,
+            released,
+            rating,
+            platforms,
+            createdInDb
         })
 
-        //     // --> Search all genres and add to created game
+        // --> Search all genres and add to created game
         const genresDb = await Genre.findAll({
             where: { name: genres }
         })
-        gameCreated[0].addGenre(genresDb)
+        gameCreated.addGenre(genresDb)
         // --> Response from POST Request
-        res.status(200).json(gameCreated.json())
+        // res.status(200).json(gameCreated)
+        res.json("Se creo esa mierda")
     }
-    // // --> Handle error 
+    // --> Handle error 
     catch (error) {
         console.log(error)
-    } 
+    }
 })
 
 module.exports = videogameRouter;
