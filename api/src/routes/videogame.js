@@ -1,7 +1,6 @@
 const { Router } = require('express');
 const videogameRouter = Router();
 const { Videogame, Genre } = require('../db')
-
 // ---- For API request  ------
 const axios = require('axios');
 require('dotenv').config();
@@ -18,26 +17,39 @@ const getApiData = async (gameId) => {
         return error
     }
 }
-
 // --> GET -->  videogame/
 videogameRouter.get("/", (req, res) => res.send("Videogame router"))
+
+
+//---------------------------------------------------------------------------------
+// ********************* Falta hacer validaciones *********************************
+//---------------------------------------------------------------------------------
+
 
 // --> GET -->  videogame/:id
 videogameRouter.get("/:id", async (req, res) => {
     const id = req.params.id
-    if (id) {
+    if (id.length < 7) {
         const gameInfoFromApi = await getApiData(id);
-        const { name, background_image, genres, description, released, rating, platforms } = await gameInfoFromApi
-        const gameDetail = {
-            name,
-            background_image,
-            released,
-            description,
-            rating,
-            platforms: platforms.map(el => el.platform.name)
+        if (gameInfoFromApi.name) {
+            const { name, background_image, genres, description, released, rating, platforms } = await gameInfoFromApi
+            const gameDetail = {
+                name,
+                background_image,
+                released,
+                description,
+                rating,
+                platforms: platforms.map(el => el.platform.name)
+            }
+            res.status(200).json(gameDetail)
         }
-        res.status(200).json(gameDetail)
-    } else {
+    }
+    if (id.length >= 8) {
+        const gamesFromDb = await Videogame.findAll()
+        const game = gamesFromDb.find(game => game.id == id)
+        if (game.length) res.status(200).json(game)
+    }
+    else {
         res.status(404).json("Game Not Found")
     }
 })
