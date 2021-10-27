@@ -32,14 +32,15 @@ videogameRouter.get("/:id", async (req, res) => {
     if (id.length < 7) {
         const gameInfoFromApi = await getApiData(id);
         if (gameInfoFromApi.name) {
-            const { name, background_image, genres, description, released, rating, platforms } = await gameInfoFromApi
+            const { name, background_image, genres, description, released, rating, platforms } = gameInfoFromApi
             const gameDetail = {
                 name,
                 background_image,
                 released,
                 description,
                 rating,
-                platforms: platforms.map(el => el.platform.name)
+                platforms: platforms.map(el => el.platform.name),
+                genres: genres.map(genre => genre.name)
             }
             res.status(200).json(gameDetail)
         }
@@ -86,7 +87,7 @@ videogameRouter.post("/", async (req, res) => {
         gameCreated.addGenre(genresDb)
         // --> Response from POST Request
         // res.status(200).json(gameCreated)
-        res.json("Se creo esa mierda")
+        res.status(200).json(gameCreated)
     }
     // --> Handle error 
     catch (error) {
