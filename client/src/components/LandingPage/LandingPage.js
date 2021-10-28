@@ -11,11 +11,13 @@ export default function LandingPage() {
                     <img
                         alt=""
                         src={logo}
-                        className="landing-page__logo" />
+                        className="landing-page__logo"
+                    />
 
-                    <Link to="/home">
-                        <button className="btn-start">Start</button>
+                    <Link to="/home" className="btn-start">
+                        Start
                     </Link>
+
                 </section>
             </div>
         </div>

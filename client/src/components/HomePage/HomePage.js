@@ -1,13 +1,21 @@
 import React from 'react'
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { getAllGames } from '../../redux/actions/index'
-import { Link } from "react-router-dom";
+import { Route } from "react-router-dom";
 import Card from '../Card/Card';
+import TopNavbar from '../TopNavbar/TopNavbar';
+import Pagination from '../Pagination/Pagination';
 
 export default function HomePage() {
     const dispatch = useDispatch()
     const allVideogames = useSelector(state => state.videogames)
+    const [currentPage, setCurrentPage] = useState(1)
+    const pagination = pageNumber => setCurrentPage(pageNumber)
+    const videogamesPerPage = 15
+    const indexOfLastVideogame = currentPage * videogamesPerPage
+    const indexOfFirstVideogame = indexOfLastVideogame - videogamesPerPage
+    const currentVideogames = allVideogames.slice(indexOfFirstVideogame, indexOfLastVideogame)
 
     useEffect(() => {
         dispatch(getAllGames())
@@ -20,9 +28,7 @@ export default function HomePage() {
 
     return (
         <div>
-            <Link to="/create-videogame">Crear videojuego</Link>
-
-            <h1>Home Page</h1>
+            <Route path="/" component={TopNavbar} />
 
             <button onClick={e => handleButtonClick(e)}>
                 Volver a cargar todos los juegos
@@ -39,10 +45,17 @@ export default function HomePage() {
             </div>
 
 
+            <div>
+                <Pagination
+                    allVideogames={allVideogames.length}
+                    videogamesPerPage={videogamesPerPage}
+                    pagination={pagination}
+                />
+            </div>
 
             <div>
-                {allVideogames
-                    ? allVideogames.map(game => {
+                {currentVideogames.length
+                    ? currentVideogames.map(game => {
                         let { id, name, genres, background_image } = game
                         if (game.id.length > 6 && typeof game.genres !== "string") genres = genres.map(genre => genre.name).join(" - ")
                         return <Card key={id} name={name} genres={genres} image={background_image} />
