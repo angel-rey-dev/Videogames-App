@@ -1,0 +1,102 @@
+@import "../../scss/variables.scss";
+@import "../../scss/mixins.scss";
+@import "../../scss/keyframes.scss";
+
+.landing-page {
+    @include border;
+    background: url(../../assets/landing-page-background.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 65% center;
+    display: flex;
+    height: 100vh;
+    min-height: 30rem;
+    position: relative;
+
+    // @include for-large-screens {
+    //     background-position: center
+    // }
+
+    &__content {
+        @include border;
+        @include flexbox;
+        margin: auto;
+        gap: 5rem;
+        max-width: 30rem;
+        width: 80%;
+
+        @include for-large-screens {
+            max-width: 80rem;
+            width: 100%;
+        }
+    }
+
+    &__logo {
+        animation: fadeIn 1.5s 1s ease-in-out 1;
+        animation-fill-mode: forwards;
+        transition: transform 1s;
+        transform: translateY(-5rem);
+        opacity: 0;
+        max-width: 40rem;
+        width: 110%;
+
+
+        @include for-large-screens {
+            // width: 40rem;
+        }
+    }
+}
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+
+    @include for-large-screens {
+        @include border;
+        margin: auto;
+        height: auto;
+        width: 80%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        position: relative;
+        background-color: transparent;
+    }
+}
+
+.btn-start {
+    animation: fadeIn 1.5s 1s 1, changeBtnBorderColor .5s 2s alternate infinite;
+    animation-fill-mode: forwards;
+
+    transition: transform 1s;
+    transform: translateY(5rem);
+    opacity: 0;
+
+    background-color: transparent;
+    border: 1px solid;
+    border-radius: 50px;
+    color: #fff;
+    cursor: pointer;
+
+    font: {
+        family: $main-font;
+        size: 2.4rem;
+    }
+
+    letter-spacing: 1px;
+    outline: none;
+    padding: 1rem 7rem;
+    transition: all .5s;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+
+    &:active {
+        transform: scale(1);
+    }
+}

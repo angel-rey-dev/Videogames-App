@@ -1,0 +1,28 @@
+@import "scss/variables.scss";
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+:root {
+  scroll-behavior: smooth;
+  font-size: 62.5%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.sr-only {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.App {
+  font-family: $second-font;
+  overflow-x: hidden;
+  width: 100%;
+}

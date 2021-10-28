@@ -1,0 +1,26 @@
+@keyframes changeBtnBorderColor {
+    from {
+        border-color: #fff;
+    }
+
+    to {
+        border-color: $cyan;
+    }
+}
+
+@keyframes fadeIn {
+    to{
+        opacity: 1;
+        transform: none;
+    }
+}
+
+// @keyframes  {
+//     from{}
+//     to{}
+// }
+
+// @keyframes fadeInFromTop {
+//     from{}
+//     to{}
+// }
