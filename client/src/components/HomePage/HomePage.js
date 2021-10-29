@@ -2,11 +2,12 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { getAllGames } from '../../redux/actions/index'
-import { Route } from "react-router-dom";
+// import { Route } from "react-router-dom";
 import Card from '../Card/Card';
-import TopNavbar from '../TopNavbar/TopNavbar';
+// import TopNavbar from '../TopNavbar/TopNavbar';
 import Pagination from '../Pagination/Pagination';
 import "./HomePage.scss"
+import Footer from '../Footer/Footer';
 
 
 export default function HomePage() {
@@ -23,23 +24,40 @@ export default function HomePage() {
         dispatch(getAllGames())
     }, [dispatch])
 
-    const handleButtonClick = (e) => {
-        e.preventDefault()
-        dispatch(getAllGames())
-    }
+    // const handleButtonClick = (e) => {
+    //     e.preventDefault()
+    //     dispatch(getAllGames())
+    // }
 
     return (
         <div className="main">
             {/* Filtrados */}
             <section className="filters">
-                <button onClick={e => handleButtonClick(e)}>
-                    Volver a cargar todos los juegos
-                </button>
 
+                {/* Order by - Alphabetic */}
                 <select>
                     <option value="asc">Ascendente</option>
                     <option value="desc">Descendente</option>
                 </select>
+
+                {/* Order by - Rating */}
+                <select>
+                    <option value="asc">Ascendente</option>
+                    <option value="desc">Descendente</option>
+                </select>
+
+                {/* Filter by -Origin */}
+                <select>
+                    <option value="all">All</option>
+                    <option value="api">API</option>
+                    <option value="user">User</option>
+                </select>
+
+                {/* Filter by -Genre */}
+                <div>
+                    <input type="checkbox" id="Action" name="Action" />
+                    <label for="Action">Action</label>
+                </div>
             </section>
 
             <Pagination
@@ -60,6 +78,8 @@ export default function HomePage() {
                 }
             </section>
 
+
+            <Footer />
         </div>
     )
 }

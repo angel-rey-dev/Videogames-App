@@ -7,6 +7,15 @@
         border-color: $cyan;
     }
 }
+@keyframes changeColor {
+    from {
+        color: #fff;
+    }
+
+    to {
+        color: $cyan;
+    }
+}
 
 @keyframes fadeIn {
     to{

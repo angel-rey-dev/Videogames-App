@@ -1,0 +1,61 @@
+@import "../../scss/variables.scss";
+@import "../../scss/keyframes.scss";
+@import "../../scss/mixins.scss";
+
+.footer {
+    // @include border;
+    border-top: 2px solid $cyan;
+    background-color: #050505;
+    display: flex;
+    font-size: 1.7rem;
+    margin-top: 10rem;
+    padding: 4rem 2rem;
+    text-align: center;
+    width: 100%;
+
+
+    &__flex-container {
+        @include flexbox;
+        gap: 3rem;
+        margin: auto;
+
+        @include for-medium-screens {
+            column-gap: 5rem;
+            flex-flow: row nowrap;
+        }
+        @include for-large-screens {
+            column-gap: 7rem;
+        }
+    }
+
+    &__credits {
+        a {
+            animation: changeColor 1s 2s forwards alternate infinite;
+            color: $cyan;
+            display: inline-block;
+            margin-left: 1rem;
+            transition: all .5s;
+
+            &:hover {
+                animation: none;
+                color: $cyan;
+                transform: scale(1.01);
+            }
+
+            &:active {
+                color: #fff;
+                transform: scale(1);
+            }
+        }
+    }
+
+    &__logo {
+        order: -1;
+        width: 70%;
+
+        @include for-medium-screens {
+            order: 0;
+            max-width: 30rem;
+        }
+    }
+}
