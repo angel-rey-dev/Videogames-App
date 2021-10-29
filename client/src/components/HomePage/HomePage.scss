@@ -1,0 +1,15 @@
+@import "../../scss/variables.scss";
+@import "../../scss/mixins.scss";
+
+.main {
+    // @include border;
+    @include flexbox;
+}
+
+.videogames {
+    //    @include border;
+    @include flexbox($flow:row wrap, $justify:space-evenly);
+    gap: 6rem;
+    max-width: 120rem;
+    width: 95%;
+}

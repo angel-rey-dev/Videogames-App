@@ -25,7 +25,7 @@ const getApiData = async () => {
                         id,
                         name,
                         background_image,
-                        genres: genres.map(el => el.name).join(" - ")
+                        genres: genres.map(el => el.name)
                     }
                 })
             ))
