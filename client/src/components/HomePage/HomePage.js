@@ -8,6 +8,7 @@ import Card from '../Card/Card';
 import Pagination from '../Pagination/Pagination';
 import "./HomePage.scss"
 import Footer from '../Footer/Footer';
+import Header from '../HeroBanner/Header';
 
 
 export default function HomePage() {
@@ -31,6 +32,9 @@ export default function HomePage() {
 
     return (
         <div className="main">
+
+            <Header />
+
             {/* Filtrados */}
             <section className="filters">
 
