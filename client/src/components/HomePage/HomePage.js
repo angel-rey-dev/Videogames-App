@@ -46,6 +46,7 @@ export default function HomePage() {
                 allVideogames={allVideogames.length}
                 videogamesPerPage={videogamesPerPage}
                 pagination={pagination}
+                currentPage={currentPage}
             />
 
             <section className="videogames">

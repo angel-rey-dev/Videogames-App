@@ -5,14 +5,14 @@
     @include flexbox;
     border: 1px solid #ccc;
     border-radius: 1.5rem;
-    font-size: 2rem;
+    font-size: 1.8rem;
     text-align: center;
-    max-width: 35rem;
+    max-width: 33rem;
     width: 85%;
 
     &__image {
         border-radius: 1.5rem 1.5rem 0 0;
-        height: 30rem;
+        height: 20rem;
         object-fit: cover;
         object-position: center;
         width: 100%;
@@ -30,7 +30,7 @@
         flex-flow: row wrap;
         justify-content: space-evenly;
         gap: 2rem ;
-        padding: 2rem 3rem 6rem;
+        padding: 2rem 3rem 4rem;
         width: 100%;
 
         p {

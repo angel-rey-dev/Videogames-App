@@ -16,7 +16,7 @@ export default function Card({ name, image, genres }) {
                 <p>Genres</p>
                 {
                     genres.length
-                        ? genres.map(genre => <span>{genre}</span>)
+                        ? genres.map(genre => <span key={genre}>{genre}</span>)
                         : <></>
                 }
             </div>

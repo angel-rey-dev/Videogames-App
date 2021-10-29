@@ -1,0 +1,49 @@
+@import "../../scss/variables.scss";
+@import "../../scss/mixins.scss";
+
+.pagination {
+    @include border;
+
+    &__items-container {
+        @include flexbox($flow:row nowrap);
+        gap: 1rem;
+        list-style-type: none;
+    }
+    &__button {
+
+        background-color: transparent;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        display: inline-block;
+
+        font: {
+            family: $main-font;
+            size: 2rem;
+        }
+
+        outline: none;
+        padding: .4rem;
+        text-decoration: none;
+        transition: all .5s;
+
+        &:active {
+            animation: test 1s 0.5 ease forwards 1;
+            animation-fill-mode: forwards;
+            color: $cyan;
+            transform: scale(1.1);
+        }
+
+        &:hover {
+            transform: scale(1.1);
+        }
+
+    }
+
+    &__active-button {
+        color: $cyan;
+        transform: scale(1.1);
+    }
+
+
+}
