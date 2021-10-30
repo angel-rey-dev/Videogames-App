@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { getAllGames, filterByOrigin } from '../../redux/actions/index'
+import { getAllGames, filterByOrigin, orderByName } from '../../redux/actions/index'
 // import { Route } from "react-router-dom";
 import Card from '../Card/Card';
 // import TopNavbar from '../TopNavbar/TopNavbar';
@@ -33,9 +33,9 @@ export default function HomePage() {
     //     e.preventDefault()
     //     dispatch(getAllGames())
     // }
-    const handleFilterByOrigin = (e) => {
-        dispatch(filterByOrigin(e.target.value))
-    }
+    const handleFilterByOrigin = (e) => dispatch(filterByOrigin(e.target.value))
+    const handleOrderByName = (e) => dispatch(orderByName(e.target.value))
+
 
     return (
         <div className="main">
@@ -48,8 +48,9 @@ export default function HomePage() {
                 {/* Order by - Alphabetic */}
                 <div>
                     <label htmlFor="name">Alphabetic:</label>
-                    <select name="name" id="name">
+                    <select name="name" id="name" onChange={e => handleOrderByName(e)}>
                         {/* <optgroup label="Choose an order"> */}
+                        <option value="none">Choose one...</option>
                         <option value="asc">Ascendente</option>
                         <option value="desc">Descendente</option>
                         {/* </optgroup> */}
