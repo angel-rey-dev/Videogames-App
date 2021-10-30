@@ -39,28 +39,39 @@ export default function HomePage() {
             <section className="filters">
 
                 {/* Order by - Alphabetic */}
-                <select>
-                    <option value="asc">Ascendente</option>
-                    <option value="desc">Descendente</option>
-                </select>
+                <div>
+                    <label htmlFor="name">Alphabetic:</label>
+                    <select name="name" id="name">
+                        {/* <optgroup label="Choose an order"> */}
+                            <option value="asc">Ascendente</option>
+                            <option value="desc">Descendente</option>
+                        {/* </optgroup> */}
+                    </select>
+                </div>
 
                 {/* Order by - Rating */}
-                <select>
-                    <option value="asc">Ascendente</option>
-                    <option value="desc">Descendente</option>
-                </select>
+                <div>
+                    <label htmlFor="rating">Rating:</label>
+                    <select name="rating" id="rating">
+                        <option value="asc">Ascendente</option>
+                        <option value="desc">Descendente</option>
+                    </select>
+                </div>
 
                 {/* Filter by -Origin */}
-                <select>
-                    <option value="all">All</option>
-                    <option value="api">API</option>
-                    <option value="user">User</option>
-                </select>
+                <div>
+                    <label htmlFor="origin">Origin:</label>
+                    <select name="origin" id="origin">
+                        <option value="all">All</option>
+                        <option value="api">API</option>
+                        <option value="user">User</option>
+                    </select>
+                </div>
 
                 {/* Filter by -Genre */}
                 <div>
                     <input type="checkbox" id="Action" name="Action" />
-                    <label for="Action">Action</label>
+                    <label htmlFor="Action">Action</label>
                 </div>
             </section>
 

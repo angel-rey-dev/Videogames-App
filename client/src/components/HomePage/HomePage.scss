@@ -4,6 +4,27 @@
 .main {
     // @include border;
     @include flexbox;
+    background-color: #000;
+    background: linear-gradient(180deg, #000000 12%, #252525 100%);
+
+}
+
+.filters {
+    margin: 4rem auto;
+    font-size: 2rem;
+    display: flex;
+    div{
+        @include flexbox;
+    }
+    select {
+        // display: inline-block;
+        padding: 1rem 2rem;
+        font-size: 2rem;
+        background-color: #202020;
+        color: white;
+        border: 1px solid cyan;
+        margin: 0 2rem;
+    }
 }
 
 .videogames {

@@ -3,7 +3,10 @@
 
 .card {
     @include flexbox;
-    border: 1px solid #ccc;
+ 
+    background-image: linear-gradient(to bottom, #3d3d3d 0%, #0f0f0f 100%);
+ 
+    border: 1px solid #555555;
     border-radius: 1.5rem;
     font-size: 1.8rem;
     text-align: center;
