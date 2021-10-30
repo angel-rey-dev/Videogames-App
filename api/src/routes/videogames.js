@@ -20,11 +20,12 @@ const getApiData = async () => {
         .then(responses => {
             responses.forEach(response => games.push(
                 response.data.results.map(game => {
-                    const { name, background_image, genres, id } = game;
+                    const { name, background_image, genres, id,rating } = game;
                     return {
                         id,
                         name,
                         background_image,
+                        rating,
                         genres: genres.map(el => el.name)
                     }
                 })
@@ -71,7 +72,6 @@ videogamesRouter.get("/", async (req, res) => {
         const filteredGames = await allGames.filter(game => {
             return game.name.toLowerCase().includes(name.toLowerCase())
         })
-        // ------------ Falta agregar un flitro para que solo sean 15 juegos -----------------
         filteredGames.length
             ? res.status(200).json(filteredGames)
             : res.status(404).send("Not Games Found")

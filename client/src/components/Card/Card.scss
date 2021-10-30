@@ -3,9 +3,9 @@
 
 .card {
     @include flexbox;
- 
+
     background-image: linear-gradient(to bottom, #3d3d3d 0%, #0f0f0f 100%);
- 
+
     border: 1px solid #555555;
     border-radius: 1.5rem;
     font-size: 1.8rem;
@@ -21,10 +21,22 @@
         width: 100%;
     }
 
-    &__name {
+    &__rating {
+        @include flexbox($flow:row nowrap);
         border-bottom: 1px solid $cyan;
-        border-bottom-width: 50%;
-        padding: 2.5rem 1.5rem;
+        padding: 1rem 1.5rem 2rem;
+        width: 80%;
+
+        img {
+            display: inline-block;
+            height: 20px;
+            margin-left: .5rem;
+            width: 20px;
+        }
+    }
+
+    &__name {
+        padding: 2.5rem 1.5rem .5rem;
         width: 90%;
     }
 
@@ -32,7 +44,7 @@
         display: flex;
         flex-flow: row wrap;
         justify-content: space-evenly;
-        gap: 2rem ;
+        gap: 2rem;
         padding: 2rem 3rem 4rem;
         width: 100%;
 

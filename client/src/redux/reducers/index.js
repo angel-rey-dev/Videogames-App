@@ -29,20 +29,30 @@ export default function rootReducer(state = initialState, action) {
             };
         // //------------------------------------
         case "ORDER_BY_NAME":
-            let filteredByName = [...state.allVideogames].sort((a, b) => {
+            let orderByName = [...state.allVideogames].sort((a, b) => {
                 if (a.name > b.name) return 1;
                 if (a.name < b.name) return -1;
                 return 0;
             })
-            if (action.payload === "desc") filteredByName = filteredByName.reverse()
+            if (action.payload === "desc") orderByName = orderByName.reverse()
 
             return {
                 ...state,
-                allVideogames: action.payload === "none" ? state.videogames : filteredByName
+                allVideogames: action.payload === "none" ? state.videogames : orderByName
             };
         // //------------------------------------
-        // case "ORDER_BY_RATING":
-        //     return { ...state };
+        case "ORDER_BY_RATING":
+            let orderByRating = [...state.allVideogames].sort((a, b) => {
+                if (a.rating > b.rating) return 1;
+                if (a.rating < b.rating) return -1;
+                return 0;
+            })
+            if (action.payload === "desc") orderByRating = orderByRating.reverse()
+
+            return {
+                ...state,
+                allVideogames: action.payload === "none" ? state.videogames : orderByRating
+            };
         // //------------------------------------
 
         default: return state

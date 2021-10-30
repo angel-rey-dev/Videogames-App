@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { getAllGames, filterByOrigin, orderByName } from '../../redux/actions/index'
+import { getAllGames, filterByOrigin, orderByName,orderByRating } from '../../redux/actions/index'
 // import { Route } from "react-router-dom";
 import Card from '../Card/Card';
 // import TopNavbar from '../TopNavbar/TopNavbar';
@@ -35,6 +35,7 @@ export default function HomePage() {
     // }
     const handleFilterByOrigin = (e) => dispatch(filterByOrigin(e.target.value))
     const handleOrderByName = (e) => dispatch(orderByName(e.target.value))
+    const handleOrderByRating = (e) => dispatch(orderByRating(e.target.value))
 
 
     return (
@@ -60,7 +61,8 @@ export default function HomePage() {
                 {/* Order by - Rating */}
                 <div>
                     <label htmlFor="rating">Rating:</label>
-                    <select name="rating" id="rating">
+                    <select name="rating" id="rating" onChange={e => handleOrderByRating(e)}>
+                        <option value="none">Choose one...</option>
                         <option value="asc">Ascendente</option>
                         <option value="desc">Descendente</option>
                     </select>
@@ -93,9 +95,9 @@ export default function HomePage() {
             <section className="videogames">
                 {currentVideogames.length
                     ? currentVideogames.map(game => {
-                        let { id, name, genres, background_image } = game
+                        let { id, name, genres, background_image,rating } = game
                         if (game.id.length > 6 && typeof game.genres !== "string") genres = genres.map(genre => genre.name)
-                        return <Card key={id} name={name} genres={genres} image={background_image} />
+                        return <Card key={id} name={name} genres={genres} image={background_image} rating={rating} />
                     })
                     : <p>Loading....</p>
                 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import "./Card.scss"
-
-export default function Card({ name, image, genres }) {
+import starIcon from "../../assets/icons/star.svg"
+export default function Card({ name, image, genres, rating }) {
     return (
         <div className="card">
             <img
@@ -12,6 +12,10 @@ export default function Card({ name, image, genres }) {
                 height="250px"
             />
             <h3 className="card__name">{name}</h3>
+            <p className="card__rating">
+                {rating}
+                <img src={starIcon} alt="Star icon" />
+            </p>
             <div className="card__genres">
                 <p>Genres</p>
                 {
