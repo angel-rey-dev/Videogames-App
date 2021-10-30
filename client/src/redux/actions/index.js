@@ -9,20 +9,26 @@ export function getAllGames() {
         })
     }
 }
+export function getAllGenres() {
+    return async (dispatch) => {
+        let request = await axios.get("http://localhost:3001/genres")
+        return dispatch({
+            type: "GET_ALL_GENRES",
+            payload: request.data.map(genre => genre.name),
+        })
+    }
+}
 export function filterByOrigin(payload) {
     return {
         type: "FILTER_BY_ORIGIN",
         payload
     }
 }
+
 export function filterByGenre(payload) {
-    return async (dispatch) => {
-        let request = await axios.get("http://localhost:3001/genres")
-        return dispatch({
-            type: "FILTER_BY_GENRE",
-            genres: request.data,
-            payload
-        })
+    return {
+        type: "FILTER_BY_GENRE",
+        payload
     }
 }
 

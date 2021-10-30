@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { getAllGames, filterByOrigin, orderByName,orderByRating } from '../../redux/actions/index'
+import { getAllGames,getAllGenres, filterByOrigin, orderByName, orderByRating, filterByGenre } from '../../redux/actions/index'
 // import { Route } from "react-router-dom";
 import Card from '../Card/Card';
 // import TopNavbar from '../TopNavbar/TopNavbar';
@@ -13,6 +13,7 @@ import Header from '../HeroBanner/Header';
 
 export default function HomePage() {
     const dispatch = useDispatch()
+    const allGenres = useSelector(state => state.allGenres)
     const allVideogames = useSelector(state => state.allVideogames)
     const [currentPage, setCurrentPage] = useState(1)
     const pagination = pageNumber => setCurrentPage(pageNumber)
@@ -27,15 +28,17 @@ export default function HomePage() {
 
     useEffect(() => {
         dispatch(getAllGames())
+        dispatch(getAllGenres())
     }, [dispatch])
 
     // const handleButtonClick = (e) => {
     //     e.preventDefault()
     //     dispatch(getAllGames())
     // }
-    const handleFilterByOrigin = (e) => dispatch(filterByOrigin(e.target.value))
-    const handleOrderByName = (e) => dispatch(orderByName(e.target.value))
-    const handleOrderByRating = (e) => dispatch(orderByRating(e.target.value))
+    const handleFilterByOrigin = e => dispatch(filterByOrigin(e.target.value))
+    const handleFilterByGenre = e => dispatch(filterByGenre(e.target.value))
+    const handleOrderByName = e => dispatch(orderByName(e.target.value))
+    const handleOrderByRating = e => dispatch(orderByRating(e.target.value))
 
 
     return (
@@ -80,8 +83,11 @@ export default function HomePage() {
 
                 {/* Filter by -Genre */}
                 <div>
-                    <input type="checkbox" id="Action" name="Action" />
-                    <label htmlFor="Action">Action</label>
+                    <label htmlFor="genres">Genres:</label>
+                    <select name="genres" id="genres" onChange={e => handleFilterByGenre(e)}>
+                        <option value="none">Choose one...</option>
+                        {allGenres.map(genre => <option value={genre}>{genre}</option>)}
+                    </select>
                 </div>
             </section>
 
@@ -95,8 +101,8 @@ export default function HomePage() {
             <section className="videogames">
                 {currentVideogames.length
                     ? currentVideogames.map(game => {
-                        let { id, name, genres, background_image,rating } = game
-                        if (game.id.length > 6 && typeof game.genres !== "string") genres = genres.map(genre => genre.name)
+                        let { id, name, genres, background_image, rating } = game
+                        genres = genres.map(genre => genre.name)
                         return <Card key={id} name={name} genres={genres} image={background_image} rating={rating} />
                     })
                     : <p>Loading....</p>
