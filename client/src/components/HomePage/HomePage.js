@@ -19,7 +19,11 @@ export default function HomePage() {
     const videogamesPerPage = 15
     const indexOfLastVideogame = currentPage * videogamesPerPage
     const indexOfFirstVideogame = indexOfLastVideogame - videogamesPerPage
-    const currentVideogames = allVideogames.slice(indexOfFirstVideogame, indexOfLastVideogame)
+
+    let currentVideogames
+    if (allVideogames.every(game => game.createdInDb)) currentVideogames = allVideogames
+    else currentVideogames = allVideogames.slice(indexOfFirstVideogame, indexOfLastVideogame)
+
 
     useEffect(() => {
         dispatch(getAllGames())

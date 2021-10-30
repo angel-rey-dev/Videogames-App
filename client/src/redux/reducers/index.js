@@ -21,12 +21,13 @@ export default function rootReducer(state = initialState, action) {
         // //------------------------------------
         case "FILTER_BY_ORIGIN":
             const allVideogamesCopy = [...state.videogames]
-            const originFiltered = action.payload === "user"
-                ? allVideogamesCopy.filter(game => game.createdInDb)
-                : allVideogamesCopy.filter(game => !game.createdInDb)
+            let originFiltered = [...state.videogames] 
+        if (action.payload === "user") originFiltered = allVideogamesCopy.filter(game => game.createdInDb)
+        if (action.payload === "api") originFiltered = allVideogamesCopy.filter(game => !game.createdInDb)
+
             return {
                 ...state,
-                allVideogames: action.payload === "all" ? state.videogames : originFiltered
+                allVideogames: originFiltered
             };
         // //------------------------------------
         // case "ORDER_BY_NAME":
