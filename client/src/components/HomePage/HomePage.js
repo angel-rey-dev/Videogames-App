@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { getAllGames } from '../../redux/actions/index'
+import { getAllGames, filterByOrigin } from '../../redux/actions/index'
 // import { Route } from "react-router-dom";
 import Card from '../Card/Card';
 // import TopNavbar from '../TopNavbar/TopNavbar';
@@ -13,7 +13,7 @@ import Header from '../HeroBanner/Header';
 
 export default function HomePage() {
     const dispatch = useDispatch()
-    const allVideogames = useSelector(state => state.videogames)
+    const allVideogames = useSelector(state => state.allVideogames)
     const [currentPage, setCurrentPage] = useState(1)
     const pagination = pageNumber => setCurrentPage(pageNumber)
     const videogamesPerPage = 15
@@ -29,6 +29,9 @@ export default function HomePage() {
     //     e.preventDefault()
     //     dispatch(getAllGames())
     // }
+    const handleFilterByOrigin = (e) => {
+        dispatch(filterByOrigin(e.target.value))
+    }
 
     return (
         <div className="main">
@@ -43,8 +46,8 @@ export default function HomePage() {
                     <label htmlFor="name">Alphabetic:</label>
                     <select name="name" id="name">
                         {/* <optgroup label="Choose an order"> */}
-                            <option value="asc">Ascendente</option>
-                            <option value="desc">Descendente</option>
+                        <option value="asc">Ascendente</option>
+                        <option value="desc">Descendente</option>
                         {/* </optgroup> */}
                     </select>
                 </div>
@@ -61,7 +64,7 @@ export default function HomePage() {
                 {/* Filter by -Origin */}
                 <div>
                     <label htmlFor="origin">Origin:</label>
-                    <select name="origin" id="origin">
+                    <select name="origin" id="origin" onChange={e => handleFilterByOrigin(e)}>
                         <option value="all">All</option>
                         <option value="api">API</option>
                         <option value="user">User</option>

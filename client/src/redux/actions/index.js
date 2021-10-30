@@ -9,3 +9,12 @@ export function getAllGames() {
         })
     }
 }
+export function filterByOrigin(payload) {
+    return {
+        type: "FILTER_BY_ORIGIN",
+        payload
+    }
+}
+
+
+
