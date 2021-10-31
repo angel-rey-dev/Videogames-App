@@ -26,7 +26,7 @@ export default function rootReducer(state = initialState, action) {
             let  filteredByGenre = [...state.videogames].filter(game => game.genres.some(el => el.name === action.payload))
             return {
                 ...state,
-                allVideogames: action.payload === "none" ? state.videogames : filteredByGenre
+                allVideogames: action.payload === "all" ? state.videogames : filteredByGenre
             };
         // //------------------------------------
         case "FILTER_BY_ORIGIN":

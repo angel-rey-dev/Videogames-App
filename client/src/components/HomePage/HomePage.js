@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { getAllGames,getAllGenres, filterByOrigin, orderByName, orderByRating, filterByGenre } from '../../redux/actions/index'
+import { getAllGames, getAllGenres, filterByOrigin, orderByName, orderByRating, filterByGenre } from '../../redux/actions/index'
 // import { Route } from "react-router-dom";
 import Card from '../Card/Card';
 // import TopNavbar from '../TopNavbar/TopNavbar';
@@ -15,6 +15,7 @@ export default function HomePage() {
     const dispatch = useDispatch()
     const allGenres = useSelector(state => state.allGenres)
     const allVideogames = useSelector(state => state.allVideogames)
+    const [order, setOrder] = useState("")
     const [currentPage, setCurrentPage] = useState(1)
     const pagination = pageNumber => setCurrentPage(pageNumber)
     const videogamesPerPage = 15
@@ -39,7 +40,12 @@ export default function HomePage() {
     const handleFilterByGenre = e => dispatch(filterByGenre(e.target.value))
     const handleOrderByName = e => dispatch(orderByName(e.target.value))
     const handleOrderByRating = e => dispatch(orderByRating(e.target.value))
-
+    const handleSort = e => {
+        e.preventDefault()
+        dispatch(orderByName(e.target.value))
+        setCurrentPage(1)
+        setOrder("Ordenado ", e.target.value)
+    }
 
     return (
         <div className="main">
@@ -52,7 +58,7 @@ export default function HomePage() {
                 {/* Order by - Alphabetic */}
                 <div>
                     <label htmlFor="name">Alphabetic:</label>
-                    <select name="name" id="name" onChange={e => handleOrderByName(e)}>
+                    <select name="name" id="name" onChange={e => handleSort(e)}>
                         {/* <optgroup label="Choose an order"> */}
                         <option value="none">Choose one...</option>
                         <option value="asc">Ascendente</option>
@@ -85,7 +91,7 @@ export default function HomePage() {
                 <div>
                     <label htmlFor="genres">Genres:</label>
                     <select name="genres" id="genres" onChange={e => handleFilterByGenre(e)}>
-                        <option value="none">Choose one...</option>
+                        <option value="all">All</option>
                         {allGenres.map(genre => <option value={genre}>{genre}</option>)}
                     </select>
                 </div>
