@@ -9,22 +9,19 @@ import Pagination from '../Pagination/Pagination';
 import "./HomePage.scss"
 import Footer from '../Footer/Footer';
 import Header from '../HeroBanner/Header';
-
+import notFoundGif from "../../assets/gifs/not-found.gif";
 
 export default function HomePage() {
     const dispatch = useDispatch()
     const allGenres = useSelector(state => state.allGenres)
     const allVideogames = useSelector(state => state.allVideogames)
-    const [order, setOrder] = useState("")
     const [currentPage, setCurrentPage] = useState(1)
     const pagination = pageNumber => setCurrentPage(pageNumber)
     const videogamesPerPage = 15
     const indexOfLastVideogame = currentPage * videogamesPerPage
     const indexOfFirstVideogame = indexOfLastVideogame - videogamesPerPage
 
-    let currentVideogames
-    if (allVideogames.every(game => game.createdInDb)) currentVideogames = allVideogames
-    else currentVideogames = allVideogames.slice(indexOfFirstVideogame, indexOfLastVideogame)
+    let currentVideogames = allVideogames.slice(indexOfFirstVideogame, indexOfLastVideogame)
 
 
     useEffect(() => {
@@ -36,16 +33,10 @@ export default function HomePage() {
     //     e.preventDefault()
     //     dispatch(getAllGames())
     // }
-    const handleFilterByOrigin = e => dispatch(filterByOrigin(e.target.value))
-    const handleFilterByGenre = e => dispatch(filterByGenre(e.target.value))
-    const handleOrderByName = e => dispatch(orderByName(e.target.value))
-    const handleOrderByRating = e => dispatch(orderByRating(e.target.value))
-    const handleSort = e => {
-        e.preventDefault()
-        dispatch(orderByName(e.target.value))
-        setCurrentPage(1)
-        setOrder("Ordenado ", e.target.value)
-    }
+    const handleFilterByOrigin = e => { dispatch(filterByOrigin(e.target.value)); setCurrentPage(1) }
+    const handleFilterByGenre = e => { dispatch(filterByGenre(e.target.value)); setCurrentPage(1) }
+    const handleOrderByName = e => { dispatch(orderByName(e.target.value)); setCurrentPage(1) }
+    const handleOrderByRating = e => { dispatch(orderByRating(e.target.value)); setCurrentPage(1) }
 
     return (
         <div className="main">
@@ -58,7 +49,7 @@ export default function HomePage() {
                 {/* Order by - Alphabetic */}
                 <div>
                     <label htmlFor="name">Alphabetic:</label>
-                    <select name="name" id="name" onChange={e => handleSort(e)}>
+                    <select name="name" id="name" onChange={e => handleOrderByName(e)}>
                         {/* <optgroup label="Choose an order"> */}
                         <option value="none">Choose one...</option>
                         <option value="asc">Ascendente</option>
@@ -92,12 +83,13 @@ export default function HomePage() {
                     <label htmlFor="genres">Genres:</label>
                     <select name="genres" id="genres" onChange={e => handleFilterByGenre(e)}>
                         <option value="all">All</option>
-                        {allGenres.map(genre => <option value={genre}>{genre}</option>)}
+                        {allGenres.map(genre => <option value={genre} key={genre}>{genre}</option>)}
                     </select>
                 </div>
             </section>
 
             <Pagination
+                className="pagination"
                 allVideogames={allVideogames.length}
                 videogamesPerPage={videogamesPerPage}
                 pagination={pagination}
@@ -111,7 +103,10 @@ export default function HomePage() {
                         genres = genres.map(genre => genre.name)
                         return <Card key={id} name={name} genres={genres} image={background_image} rating={rating} />
                     })
-                    : <p>Loading....</p>
+                    : <section className="no-games-found">
+                        <h3 className="no-games-found__title">No games found</h3>
+                        <img src={notFoundGif} className="no-games-found__gif" alt="Game not found" />
+                    </section>
                 }
             </section>
 

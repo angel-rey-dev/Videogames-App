@@ -1,5 +1,6 @@
 import React from 'react'
 import logo from '../../assets/general-logo.svg'
+import SearchBar from '../SearchBar/SearchBar'
 import "./Header.scss"
 
 export default function Header() {
@@ -13,8 +14,7 @@ export default function Header() {
                     src={logo}
                 />
 
-                <input type="text" placeholder="Search Videogame..." className="header__search-bar" />
-
+                <SearchBar/>
             </div>
         </header>
     )

@@ -74,9 +74,8 @@ videogamesRouter.get("/", async (req, res) => {
         })
         filteredGames.length
             ? res.status(200).json(filteredGames)
-            : res.status(404).send("Not Games Found")
+            : res.status(404).send([])
     } else {
-        // res.status(200).json(allGames)
         res.status(200).json(allGames)
     }
 })

@@ -30,25 +30,4 @@
         // @include for-medium-screens {
         // }
     }
-
-    &__search-bar {
-        background-color: #000000;
-        border: 2px solid #fff;
-        border-radius: 5rem;
-        font-size: 1.7rem;
-        color: #fff;
-        max-width: 60rem;
-        outline: none;
-        padding: 1.2rem 2.5rem;
-        transition: all .5s;
-        width: 80%;
-
-        &::placeholder {
-            color: #8080809c;
-        }
-
-        &:focus {
-            border-color: $cyan;
-        }
-    }
 }

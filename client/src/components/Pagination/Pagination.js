@@ -10,7 +10,8 @@ export default function Pagination({ currentPage, videogamesPerPage, allVideogam
         <nav className="pagination">
             <ul className="pagination__items-container">
                 {
-                    pageNumbers.length && pageNumbers.map(number => {
+                    pageNumbers.length 
+                    ? pageNumbers.map(number => {
                         return (
                             <li key={number} className="pagination__item">
                                 <button
@@ -27,6 +28,7 @@ export default function Pagination({ currentPage, videogamesPerPage, allVideogam
                             </li>
                         )
                     })
+                    : <></>
                 }
             </ul>
         </nav>

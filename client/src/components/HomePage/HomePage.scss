@@ -5,7 +5,7 @@
     // @include border;
     @include flexbox;
     background-color: #000;
-    background: linear-gradient(180deg, #000000 12%, #252525 100%);
+    background: linear-gradient(180deg, #000000 50%, #252525 100%);
 
 }
 
@@ -13,9 +13,11 @@
     margin: 4rem auto;
     font-size: 2rem;
     display: flex;
-    div{
+
+    div {
         @include flexbox;
     }
+
     select {
         // display: inline-block;
         padding: 1rem 2rem;
@@ -33,4 +35,20 @@
     gap: 6rem;
     max-width: 120rem;
     width: 95%;
+}
+
+.no-games-found {
+    @include flexbox($flow:column-reverse nowrap);
+    font: {
+        size: 6rem;
+        family: $main-font;
+    }
+
+    margin: 4rem auto;
+    padding: 2rem;
+
+    text: {
+        align: center;
+        shadow: 3px ​2px 2px #000000;
+    }
 }

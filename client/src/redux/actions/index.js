@@ -18,6 +18,23 @@ export function getAllGenres() {
         })
     }
 }
+export function searchByName(name) {
+    return async (dispatch) => {
+        try {
+            let json = await axios.get(`http://localhost:3001/videogames?name=${name}`)
+            return dispatch({
+                type: "SEARCH_BY_NAME",
+                payload: json.data,
+            })
+        } catch (error) {
+            console.log(error)
+            return dispatch({
+                type: "SEARCH_BY_NAME",
+                payload: []
+            })
+        }
+    }
+}
 export function filterByOrigin(payload) {
     return {
         type: "FILTER_BY_ORIGIN",
