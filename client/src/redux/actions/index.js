@@ -33,7 +33,7 @@ export function searchByName(name) {
                 payload: []
             })
         }
-    }
+    } 
 }
 export function filterByOrigin(payload) {
     return {
