@@ -8,7 +8,7 @@ const initialState = {
 
 export default function rootReducer(state = initialState, action) {
     switch (action.type) {
-        
+
         case "GET_ALL_VIDEOGAMES":
             return {
                 ...state,
@@ -17,7 +17,7 @@ export default function rootReducer(state = initialState, action) {
             };
 
         //------------------------------------------------------------------
-        
+
         case "GET_ALL_GENRES":
             return {
                 ...state,
@@ -25,12 +25,19 @@ export default function rootReducer(state = initialState, action) {
             };
 
         //------------------------------------------------------------------
-        
-        case "SEARCH_BY_NAME": 
-        return {
-            ...state,
-            allVideogames: action.payload
-        }
+
+        case "SEARCH_BY_NAME":
+            return {
+                ...state,
+                allVideogames: action.payload
+            }
+
+        //------------------------------------------------------------------
+
+        case "POST_NEW_VIDEOGAME":
+            return {
+                ...state
+            }
 
         //------------------------------------------------------------------
 
