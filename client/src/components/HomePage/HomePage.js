@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { getAllGames, getAllGenres, filterByOrigin, orderByName, orderByRating, filterByGenre } from '../../redux/actions/index'
-// import { Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Card from '../Card/Card';
 // import TopNavbar from '../TopNavbar/TopNavbar';
 import Pagination from '../Pagination/Pagination';
@@ -42,6 +42,8 @@ export default function HomePage() {
         <div className="main">
 
             <Header />
+
+            <Link to="/create-videogame"> <button className="btn btn-primary">Create a new videogame</button></Link>
 
             {/* Filtrados */}
             <section className="filters">
