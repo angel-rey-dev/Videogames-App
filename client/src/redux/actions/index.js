@@ -53,7 +53,27 @@ export function postNewVideogame(videogame) {
         // }
     }
 }
+export function getVideogameDetail(id) {
+    return async (dispatch) => {
+        try {
 
+            let json = await axios.get(`http://localhost:3001/videogame/${id}`)
+            return dispatch({
+                type: "GET_VIDEOGAME_DETAIL",
+                payload: json.data,
+            })
+        }
+
+        catch (error) {
+            console.log(error)
+            return dispatch({
+                type: "GET_VIDEOGAME_DETAIL",
+                payload: []
+            })
+        }
+
+    }
+}
 
 export function filterByOrigin(payload) {
     return {
