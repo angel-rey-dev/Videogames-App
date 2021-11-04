@@ -103,7 +103,8 @@ export default function HomePage() {
                     ? currentVideogames.map(game => {
                         let { id, name, genres, background_image, rating } = game
                         genres = genres.map(genre => genre.name)
-                        return <Card key={id} name={name} genres={genres} image={background_image} rating={rating} />
+                        return <Card key={id} name={name} genres={genres} image={background_image} rating={rating} id={id} />
+
                     })
                     : <section className="no-games-found">
                         <h3 className="no-games-found__title">No games found</h3>

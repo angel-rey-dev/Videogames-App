@@ -1,17 +1,21 @@
 import React from 'react'
 import "./Card.scss"
 import starIcon from "../../assets/icons/star.svg"
-export default function Card({ name, image, genres, rating }) {
+import { Link } from 'react-router-dom'
+export default function Card({ name, image, genres, rating, id }) {
     return (
         <div className="card">
-            <img
-                alt=""
-                className="card__image"
-                src={image}
-                width="250px"
-                height="250px"
-            />
-            <h3 className="card__name">{name}</h3>
+            <Link to={`/videogame/${id}`}>
+                <img
+                    alt=""
+                    className="card__image"
+                    src={image}
+                />
+                <h3 className="card__name">
+                    {name}
+                </h3>
+            </Link>
+
             <p className="card__rating">
                 {rating}
                 <img src={starIcon} alt="Star icon" />

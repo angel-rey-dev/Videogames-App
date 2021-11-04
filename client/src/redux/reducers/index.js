@@ -30,7 +30,7 @@ export default function rootReducer(state = initialState, action) {
         case "GET_VIDEOGAME_DETAIL":
             return {
                 ...state,
-                videogameDetails: action.payload
+                videogameDetails: [action.payload]
             };
 
 

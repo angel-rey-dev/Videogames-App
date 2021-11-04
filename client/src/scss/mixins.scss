@@ -28,3 +28,34 @@
         @content;
     }
 }
+
+@mixin back-btn {
+    background-color: #000;
+    border: 1px solid $cyan;
+    border-left-color: #000;
+    border-radius: 0 5rem 5rem 0;
+    cursor: pointer;
+    padding: 1rem 4rem 1rem 6rem;
+    position: fixed;
+    left: -4rem;
+    top: 5rem;
+    transition: all 0.3s ease-in-out;
+    z-index: 100000;
+
+    @include for-medium-screens() {
+        top: 43%;
+    }
+
+    &:hover {
+        border-color: #fff;
+        border-left-color: #000;
+        left: -2rem;
+    }
+
+    &:active {
+        border-color: $cyan;
+        border-left-color: #000;
+        transform: scale(0.9);
+
+    }
+}
