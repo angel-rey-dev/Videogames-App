@@ -28,9 +28,11 @@ export default function rootReducer(state = initialState, action) {
         //------------------------------------------------------------------
 
         case "GET_VIDEOGAME_DETAIL":
+            const videogameFromDbDetails = state.videogames.find(videogame => videogame.id.toString() === action.id);
             return {
                 ...state,
-                videogameDetails: [action.payload]
+                videogameDetails: action.id.length > 6 ? Array(videogameFromDbDetails) : [action.payload]
+                // videogameDetails: Array.isArray(action.payload) ? action.payload : [action.payload] 
             };
 
 

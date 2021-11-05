@@ -1,7 +1,9 @@
-import React from 'react'
 import "./Card.scss"
-import starIcon from "../../assets/icons/star.svg"
+import React from 'react'
 import { Link } from 'react-router-dom'
+import starIcon from "../../assets/icons/star.svg"
+import defaultImage from '../../assets/default-image.webp'
+
 export default function Card({ name, image, genres, rating, id }) {
     return (
         <div className="card">
@@ -9,7 +11,7 @@ export default function Card({ name, image, genres, rating, id }) {
                 <img
                     alt=""
                     className="card__image"
-                    src={image}
+                    src={image || defaultImage}
                 />
                 <h3 className="card__name">
                     {name}

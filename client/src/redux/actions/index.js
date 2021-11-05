@@ -60,6 +60,7 @@ export function getVideogameDetail(id) {
             let json = await axios.get(`http://localhost:3001/videogame/${id}`)
             return dispatch({
                 type: "GET_VIDEOGAME_DETAIL",
+                id: id.toString() ,
                 payload: json.data,
             })
         }
