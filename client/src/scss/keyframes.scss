@@ -7,6 +7,7 @@
         border-color: $cyan;
     }
 }
+
 @keyframes changeColor {
     from {
         color: #fff;
@@ -18,16 +19,37 @@
 }
 
 @keyframes fadeIn {
-    to{
+    to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-// @keyframes  {
-//     from{}
-//     to{}
-// }
+@keyframes moveGradient {
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes formErrorAnimation {
+    from {
+        color: #fff;
+    }
+
+    to {
+        color: #fc3535;
+    }
+}
+
+@keyframes reveal {
+    // from {
+    //     background-color: rgb(0, 0, 0);
+    // }
+    
+    to {
+        background-color: rgba(0, 0, 0, 0);
+    }
+}
 
 // @keyframes fadeInFromTop {
 //     from{}

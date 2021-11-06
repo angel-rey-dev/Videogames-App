@@ -18,6 +18,15 @@ export function getAllGenres() {
         })
     }
 }
+export function getAllPlatforms() {
+    return async (dispatch) => {
+        let json = await axios.get("http://localhost:3001/platforms")
+        return dispatch({
+            type: "GET_ALL_PLATFORMS",
+            payload: json.data,
+        })
+    }
+}
 export function searchByName(name) {
     return async (dispatch) => {
         try {

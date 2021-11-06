@@ -3,7 +3,6 @@
 @import "../../scss/keyframes.scss";
 
 .landing-page {
-    @include border;
     background: url(../../assets/landing-page-background.webp);
     background-repeat: no-repeat;
     background-size: cover;
@@ -13,59 +12,40 @@
     min-height: 30rem;
     position: relative;
 
-    // @include for-large-screens {
-    //     background-position: center
-    // }
-
     &__content {
-        @include border;
         @include flexbox;
         margin: auto;
         gap: 5rem;
-        max-width: 30rem;
+        max-width: 35rem;
         width: 80%;
 
         @include for-large-screens {
+            margin-right: 35%;
             max-width: 80rem;
             width: 100%;
         }
     }
 
     &__logo {
-        animation: fadeIn 1.5s 1s ease-in-out 1;
-        animation-fill-mode: forwards;
+        animation: fadeIn 1.5s 1s ease-in-out forwards 1;
         transition: transform 1s;
         transform: translateY(-5rem);
         opacity: 0;
-        max-width: 40rem;
+        max-width: 45rem;
         width: 110%;
-
-
-        @include for-large-screens {
-            // width: 40rem;
-        }
     }
 }
 
 .overlay {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.918);
+    animation: reveal 1.5s 2s ease-in-out forwards 1;
     display: flex;
     position: absolute;
     top: 0;
     left: 0;
-    height: 100%;
+    transition: all .5s;
+    height: 100vh;
     width: 100%;
-
-    @include for-large-screens {
-        @include border;
-        margin: auto;
-        height: auto;
-        width: 80%;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        position: relative;
-        background-color: transparent;
-    }
 }
 
 .btn-start {

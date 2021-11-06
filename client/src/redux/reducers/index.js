@@ -3,7 +3,8 @@ const initialState = {
     videogameDetails: [],
     videogames: [],
     allVideogames: [],
-    allGenres: []
+    allGenres: [],
+    allPlatforms: [],
 }
 
 
@@ -23,6 +24,14 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 allGenres: action.payload
+            };
+
+        //------------------------------------------------------------------
+
+        case "GET_ALL_PLATFORMS":
+            return {
+                ...state,
+                allPlatforms: action.payload
             };
 
         //------------------------------------------------------------------
