@@ -1,7 +1,7 @@
+import "./Header.scss"
 import React from 'react'
 import logo from '../../assets/general-logo.svg'
 import SearchBar from '../SearchBar/SearchBar'
-import "./Header.scss"
 
 export default function Header() {
     return (
@@ -12,7 +12,7 @@ export default function Header() {
                     alt="THE GAMEROOM Logo"
                     className="header__logo"
                     src={logo}
-                />
+                /> 
 
                 <SearchBar/>
             </div>

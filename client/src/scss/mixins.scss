@@ -59,3 +59,20 @@
 
     }
 }
+
+@mixin fixed-background {
+    filter: blur(8px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: -1;
+
+    img {
+        object-fit: cover;
+        object-position: center;
+        height: 100%;
+        width: 100%;
+    }
+}

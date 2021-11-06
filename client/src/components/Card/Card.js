@@ -12,6 +12,8 @@ export default function Card({ name, image, genres, rating, id }) {
                     alt=""
                     className="card__image"
                     src={image || defaultImage}
+                    width="400px"
+
                 />
                 <h3 className="card__name">
                     {name}

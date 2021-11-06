@@ -39,12 +39,12 @@ videogameRouter.get("/:id", async (req, res) => {
         else {
             const gameInfoFromApi = await getApiData(id);
             if (gameInfoFromApi.name) {
-                const { name, background_image, genres, description_raw, released, rating, platforms } = gameInfoFromApi
+                const { name, background_image, genres, description, released, rating, platforms } = gameInfoFromApi
                 const gameDetail = {
                     name,
                     background_image,
                     released,
-                    description: description_raw,
+                    description,
                     rating,
                     platforms: platforms.map(el => el.platform.name),
                     genres: genres.map(genre => genre.name)

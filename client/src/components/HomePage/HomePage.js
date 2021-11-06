@@ -1,15 +1,14 @@
+import "./HomePage.scss"
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { getAllGames, getAllGenres, filterByOrigin, orderByName, orderByRating, filterByGenre } from '../../redux/actions/index'
 import { Link } from "react-router-dom";
 import Card from '../Card/Card';
-// import TopNavbar from '../TopNavbar/TopNavbar';
 import Pagination from '../Pagination/Pagination';
-import "./HomePage.scss"
 import Footer from '../Footer/Footer';
 import Header from '../HeroBanner/Header';
-import notFoundGif from "../../assets/gifs/not-found.gif";
+import Loader from "../Loader/Loader";
 
 export default function HomePage() {
     const dispatch = useDispatch()
@@ -91,7 +90,7 @@ export default function HomePage() {
             </section>
 
             <Pagination
-                className="pagination"
+                className="paginationTop"
                 allVideogames={allVideogames.length}
                 videogamesPerPage={videogamesPerPage}
                 pagination={pagination}
@@ -106,13 +105,17 @@ export default function HomePage() {
                         return <Card key={id} name={name} genres={genres} image={background_image} rating={rating} id={id} />
 
                     })
-                    : <section className="no-games-found">
-                        <h3 className="no-games-found__title">No games found</h3>
-                        <img src={notFoundGif} className="no-games-found__gif" alt="Game not found" />
-                    </section>
+                    : <Loader />
                 }
             </section>
 
+            <Pagination
+                className="paginationBottom"
+                allVideogames={allVideogames.length}
+                videogamesPerPage={videogamesPerPage}
+                pagination={pagination}
+                currentPage={currentPage}
+            />
 
             <Footer />
         </div>

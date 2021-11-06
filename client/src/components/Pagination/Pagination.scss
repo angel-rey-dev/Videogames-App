@@ -3,6 +3,7 @@
 
 .pagination {
     @include border;
+    margin: 5rem auto 8rem;
 
     &__items-container {
         @include flexbox($flow:row nowrap);
