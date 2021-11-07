@@ -1,0 +1,416 @@
+@import "../../scss/variables.scss";
+@import "../../scss/mixins.scss";
+@import "../../scss/keyframes.scss";
+
+.create-game-page {
+    @include flexbox;
+    background-color: #00000090;
+    min-height: 100vh;
+    position: relative;
+
+    &__back-btn {
+        @include back-btn;
+    }
+
+    &__fixed-background {
+        @include fixed-background;
+    }
+}
+
+
+.form-container {
+    @include flexbox;
+    margin: 10rem auto;
+    max-width: 100rem;
+    opacity: 0.95;
+    position: relative;
+    text-shadow: -1px 0 2px #000;
+    width: 90%;
+
+    &::after {
+        position: absolute;
+        content: "";
+        top: calc(-1 * 3px);
+        left: calc(-1 * 3px);
+        z-index: -1;
+        width: calc(100% + 3px * 2);
+        height: calc(100% + 3px * 2);
+        background: linear-gradient(60deg,
+                hsl(224, 85%, 66%),
+                hsl(269, 85%, 66%),
+                hsl(314, 85%, 66%),
+                hsl(359, 85%, 66%),
+                hsl(44, 85%, 66%),
+                hsl(89, 85%, 66%),
+                hsl(134, 85%, 66%),
+                hsl(179, 85%, 66%));
+        background-size: 300% 300%;
+        background-position: 0 50%;
+        border-radius: calc(2 * 3px);
+        animation: moveGradient 4s alternate infinite;
+    }
+
+    @include for-large-screens {
+        align-items: stretch;
+        flex-flow: row nowrap;
+        justify-content: space-between
+    }
+
+    &__banner {
+        display: none;
+
+        @include for-large-screens {
+            position: relative;
+            display: flex;
+            height: auto;
+            width: 35%;
+            display: none;
+
+            img {
+                border: 5px solid #000;
+                position: absolute;
+                top: 0;
+                left: 0;
+                object-fit: cover;
+                object-position: center;
+                height: 100%;
+                width: 100%;
+            }
+        }
+    }
+
+
+}
+
+.form {
+    @include flexbox;
+    background-color: #000000;
+    opacity: 1;
+    background-image: repeating-radial-gradient(circle at 0 0, transparent 0, #000000 20px), repeating-linear-gradient(#08080855, #080808);
+    border-radius: 3px;
+    display: grid;
+    place-items: center;
+    gap: 3rem;
+    margin: 1px;
+    padding: 4rem;
+    width: 100%;
+    grid-template-areas:
+        "title"
+        "name"
+        "rating-and-released"
+        "description"
+        "image"
+        "checkbox"
+        "button"
+    ;
+
+    @include for-medium-screens {
+        grid-template-areas:
+            "title title"
+            "name description "
+            "rating-and-released  description"
+            "image description "
+            "checkbox checkbox"
+            "button button"
+        ;
+    }
+
+    @include for-large-screens {
+        grid-template-areas:
+            "title title"
+            "name description "
+            "rating-and-released  description"
+            "image description "
+            "checkbox checkbox"
+            "button button"
+        ;
+    }
+
+
+    &__error {
+        animation: formErrorAnimation 1s ease-in alternate infinite;
+        color: #fc3535;
+        text-transform: capitalize;
+        position: absolute;
+        bottom: -3rem;
+        text-align: center;
+        user-select: none;
+        width: 100%;
+
+        @media screen and (max-width: 397px) {
+            bottom: -5rem;
+        }
+
+
+    }
+
+    &__input {
+
+        &--error {
+
+            border-color: #fc3535 !important;
+        }
+
+        &--success {
+            &:focus {
+                border-color: $cyan !important;
+            }
+        }
+    }
+
+    &__title {
+        border-bottom: 1px solid $cyan;
+        font-size: 3rem;
+        font-weight: bold;
+        margin-bottom: 4rem;
+        padding-bottom: 1rem;
+        text-transform: uppercase;
+        text-align: center;
+        grid-area: title;
+    }
+
+    &__input-container {
+        // @include border;
+        @include flexbox;
+        font-family: $second-font;
+        gap: .5rem;
+        margin-bottom: 3rem;
+        position: relative;
+        text-transform: uppercase;
+        width: 100%;
+
+        input {
+            background-color: #10101050;
+            border: 1px solid #ccc;
+            border-radius: 5rem;
+            color: #fff;
+            outline: none;
+            padding: 1.2rem 3.5rem 1.2rem 3rem;
+            transition: all .3s;
+            max-width: 50rem;
+            width: 100%;
+        }
+
+        label {
+            letter-spacing: .5px;
+
+            font: {
+                size: 2.2rem;
+                family: $main-font;
+            }
+        }
+
+
+    }
+
+    &__name-container {
+        grid-area: name;
+    }
+
+    &__description-container {
+        grid-area: description;
+
+        textarea {
+            background-color: #10101050;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            color: #fff;
+            outline: none;
+            font-family: $second-font;
+            max-height: 30rem;
+            min-height: 10rem;
+            padding: 1rem;
+            resize: vertical;
+            max-width: 50rem;
+            width: 100%;
+
+            @include for-medium-screens {
+                height: 25rem;
+            }
+
+            &+p {
+                @include for-medium-screens {
+                    bottom: -7rem;
+                }
+            }
+        }
+    }
+
+    &__fields-container {
+        // @include border;
+        @include flexbox;
+        gap: 3rem;
+        grid-area: rating-and-released;
+        margin-bottom: 3rem;
+
+        @media screen and (min-width: 500px) {
+            flex-flow: row nowrap;
+            justify-content: space-evenly;
+        }
+
+        input {
+            background-color: #10101050;
+            border: 1px solid #ccc;
+        }
+
+        label {
+            letter-spacing: .5px;
+
+            font: {
+                size: 2.2rem;
+                family: $main-font;
+            }
+        }
+
+        p {
+            color: rgb(252, 53, 53);
+            position: absolute;
+            bottom: -3rem;
+        }
+    }
+
+    &__rating-container {
+        // @include border;
+        @include flexbox;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        position: relative;
+        width: 100%;
+
+        @media screen and (min-width: 500px) {
+            margin-bottom: 0;
+        }
+
+        @include for-medium-screens {
+            flex-flow: row nowrap;
+            justify-content: space-evenly;
+        }
+
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input {
+            -moz-appearance: textfield;
+            border-radius: 3px;
+            color: #fff;
+            outline: none;
+            padding: 1rem 2rem;
+            max-width: 15rem;
+
+            &+p {
+                bottom: -60%;
+
+                @media screen and (min-width: 500px) {
+                    bottom: -120%;
+                }
+            }
+        }
+
+    }
+
+    &__released-container {
+        // @include border;
+        position: relative;
+        @include flexbox;
+        gap: 1rem;
+
+        @include for-medium-screens {
+            flex-flow: row nowrap;
+            justify-content: space-evenly;
+        }
+
+        input {
+            border-radius: 3px;
+            color: #fff;
+            outline: none;
+            padding: 1rem 1.5rem;
+            text-align: center;
+            max-width: 20rem;
+            width: 100%;
+        }
+    }
+
+    &__image-container {
+        grid-area: image;
+    }
+
+    &__checkbox-container {
+        // border: 1px solid greenyellow;
+        @include flexbox;
+        gap: 2rem;
+        grid-area: checkbox;
+        margin: 1rem auto 3rem;
+        text-align: center;
+        text-transform: uppercase;
+        width: 100%;
+
+        h3 {
+            letter-spacing: .5px;
+
+            font: {
+                size: 2.3rem;
+                family: $main-font;
+                weight: 500;
+            }
+        }
+    }
+
+    &__genres-container {
+        animation: changeBtnBorderColor .5s  alternate infinite;
+        border-top: 1px solid $cyan;
+        padding: 2rem 0;
+        position: relative;
+        margin-bottom: 4rem;
+    }
+
+    &__platforms-container {
+        @extend .form__genres-container;
+    }
+
+    &__submit-btn {
+        animation: changeBtnBorderColor .5s 2s alternate infinite;
+        animation-fill-mode: forwards;
+        background-color: #141414;
+        border: 2px solid #202020;
+        border-radius: 5rem;
+        color: #e2e2e2;
+        cursor: pointer;
+        letter-spacing: .5px;
+
+        font: {
+            size: 2.5rem;
+            family: $main-font;
+            weight: 500;
+        }
+
+        grid-area: button;
+        max-width: 30rem;
+        padding: 1.2rem 6rem;
+        text-transform: uppercase;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+            background-color: #181818;
+            border-color: #303030;
+            transform: translateY(-4px) scale(1.02);
+        }
+
+        &:active {
+            background-color: #101010;
+            border-color: #fff;
+            color: #ccc;
+            transform: scale(1);
+        }
+    }
+}
+
+.custom-checkbox-container {
+    @include flexbox($flow:row wrap);
+    gap: 1.5rem;
+    margin: 1rem auto 3rem;
+    width: 100%;
+}

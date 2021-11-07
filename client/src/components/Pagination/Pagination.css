@@ -1,0 +1,58 @@
+.pagination {
+  border: 1px solid magenta;
+}
+
+.pagination__items-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+  list-style-type: none;
+}
+
+.pagination__button {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Bebas Neue", cursive;
+  font-size: 2rem;
+  outline: none;
+  padding: .4rem;
+  text-decoration: none;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+.pagination__button:active {
+  -webkit-animation: test 1s 0.5 ease forwards 1;
+          animation: test 1s 0.5 ease forwards 1;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  color: #4FFEF9;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.pagination__button:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.pagination__active-button {
+  color: #4FFEF9;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+/*# sourceMappingURL=Pagination.css.map */

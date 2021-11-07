@@ -1,0 +1,96 @@
+.card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#3d3d3d), to(#0f0f0f));
+  background-image: linear-gradient(to bottom, #3d3d3d 0%, #0f0f0f 100%);
+  border: 1px solid #555555;
+  border-radius: 1.5rem;
+  font-size: 1.8rem;
+  text-align: center;
+  max-width: 33rem;
+  width: 85%;
+}
+
+.card__image {
+  border-radius: 1.5rem 1.5rem 0 0;
+  height: 20rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  width: 100%;
+}
+
+.card__rating {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom: 1px solid #4FFEF9;
+  padding: 1rem 1.5rem 2rem;
+  width: 80%;
+}
+
+.card__rating img {
+  display: inline-block;
+  height: 20px;
+  margin-left: .5rem;
+  width: 20px;
+}
+
+.card__name {
+  padding: 2.5rem 1.5rem .5rem;
+  width: 90%;
+}
+
+.card__genres {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  gap: 2rem;
+  padding: 2rem 3rem 4rem;
+  width: 100%;
+}
+
+.card__genres p {
+  text-align: center;
+  width: 100%;
+}
+
+.card__genres span {
+  background-color: #4b4b4b;
+  border: 1px solid #808080;
+  border-radius: .5rem;
+  display: inline-block;
+  font-size: 2rem;
+  font-family: "Bebas Neue", cursive;
+  padding: .5rem 2rem;
+}
+/*# sourceMappingURL=Card.css.map */

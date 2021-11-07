@@ -1,0 +1,126 @@
+@-webkit-keyframes changeBtnBorderColor {
+  from {
+    border-color: #fff;
+  }
+  to {
+    border-color: #4FFEF9;
+  }
+}
+
+@keyframes changeBtnBorderColor {
+  from {
+    border-color: #fff;
+  }
+  to {
+    border-color: #4FFEF9;
+  }
+}
+
+@-webkit-keyframes changeColor {
+  from {
+    color: #fff;
+  }
+  to {
+    color: #4FFEF9;
+  }
+}
+
+@keyframes changeColor {
+  from {
+    color: #fff;
+  }
+  to {
+    color: #4FFEF9;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+.header {
+  background-image: url(../../assets/hero-banner-background.webp);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  -webkit-box-shadow: 0px 20px 40px 10px #000000 inset, 0px -40px 60px 20px #000000 inset;
+          box-shadow: 0px 20px 40px 10px #000000 inset, 0px -40px 60px 20px #000000 inset;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 60vh;
+  min-height: 50rem;
+  max-height: 80rem;
+  width: 100%;
+}
+
+.header__flex-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 2rem;
+  margin: 10rem auto;
+  width: 100%;
+}
+
+.header__logo {
+  width: 70%;
+  max-width: 35rem;
+}
+
+.header__search-bar {
+  background-color: #000000;
+  border: 2px solid #fff;
+  border-radius: 5rem;
+  font-size: 1.7rem;
+  color: #fff;
+  max-width: 60rem;
+  outline: none;
+  padding: 1.2rem 2.5rem;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+  width: 80%;
+}
+
+.header__search-bar::-webkit-input-placeholder {
+  color: #8080809c;
+}
+
+.header__search-bar:-ms-input-placeholder {
+  color: #8080809c;
+}
+
+.header__search-bar::-ms-input-placeholder {
+  color: #8080809c;
+}
+
+.header__search-bar::placeholder {
+  color: #8080809c;
+}
+
+.header__search-bar:focus {
+  border-color: #4FFEF9;
+}
+/*# sourceMappingURL=Header.css.map */

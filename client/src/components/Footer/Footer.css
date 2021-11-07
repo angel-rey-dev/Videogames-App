@@ -1,0 +1,143 @@
+@-webkit-keyframes changeBtnBorderColor {
+  from {
+    border-color: #fff;
+  }
+  to {
+    border-color: #4FFEF9;
+  }
+}
+
+@keyframes changeBtnBorderColor {
+  from {
+    border-color: #fff;
+  }
+  to {
+    border-color: #4FFEF9;
+  }
+}
+
+@-webkit-keyframes changeColor {
+  from {
+    color: #fff;
+  }
+  to {
+    color: #4FFEF9;
+  }
+}
+
+@keyframes changeColor {
+  from {
+    color: #fff;
+  }
+  to {
+    color: #4FFEF9;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+.footer {
+  background-color: #050505;
+  border-top: 2px solid #4FFEF9;
+  -webkit-box-shadow: -5px -10px 5px 0px rgba(0, 0, 0, 0.6);
+          box-shadow: -5px -10px 5px 0px rgba(0, 0, 0, 0.6);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 1.7rem;
+  margin-top: 10rem;
+  padding: 4rem 2rem;
+  text-align: center;
+  width: 100%;
+}
+
+.footer__flex-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 3rem;
+  margin: auto;
+}
+
+@media screen and (min-width: 768px) {
+  .footer__flex-container {
+    -webkit-column-gap: 5rem;
+            column-gap: 5rem;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .footer__flex-container {
+    -webkit-column-gap: 7rem;
+            column-gap: 7rem;
+  }
+}
+
+.footer__credits a {
+  -webkit-animation: changeColor 1s 2s forwards alternate infinite;
+          animation: changeColor 1s 2s forwards alternate infinite;
+  color: #4FFEF9;
+  display: inline-block;
+  margin-left: 1rem;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+.footer__credits a:hover {
+  -webkit-animation: none;
+          animation: none;
+  color: #4FFEF9;
+  -webkit-transform: scale(1.01);
+          transform: scale(1.01);
+}
+
+.footer__credits a:active {
+  color: #fff;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+.footer__logo {
+  -webkit-box-ordinal-group: 0;
+      -ms-flex-order: -1;
+          order: -1;
+  width: 70%;
+}
+
+@media screen and (min-width: 768px) {
+  .footer__logo {
+    -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+            order: 0;
+    max-width: 30rem;
+  }
+}
+/*# sourceMappingURL=Footer.css.map */
