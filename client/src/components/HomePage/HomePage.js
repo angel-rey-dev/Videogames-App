@@ -9,6 +9,7 @@ import Pagination from '../Pagination/Pagination';
 import Footer from '../Footer/Footer';
 import Header from '../HeroBanner/Header';
 import Loader from "../Loader/Loader";
+import NotFound from "../NotFound/NotFound";
 
 export default function HomePage() {
     const dispatch = useDispatch()
@@ -99,12 +100,14 @@ export default function HomePage() {
 
             <section className="videogames">
                 {currentVideogames.length
-                    ? currentVideogames.map(game => {
-                        let { id, name, genres, background_image, rating } = game
-                        genres = genres.map(genre => genre.name)
-                        return <Card key={id} name={name} genres={genres} image={background_image} rating={rating} id={id} />
+                    ? currentVideogames === "Not Found"
+                        ? <NotFound />
+                        : currentVideogames.map(game => {
+                            let { id, name, genres, background_image, rating } = game
+                            genres = genres.map(genre => genre.name)
+                            return <Card key={id} name={name} genres={genres} image={background_image} rating={rating} id={id} />
 
-                    })
+                        })
                     : <Loader />
                 }
             </section>

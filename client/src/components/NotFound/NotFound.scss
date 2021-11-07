@@ -1,0 +1,14 @@
+@import "../../scss/mixins.scss";
+@import "../../scss/variables.scss";
+
+.not-found{
+    @include flexbox;
+    font-size: 3rem;
+    margin: 2rem auto;
+    text-align: center;
+    text-transform: uppercase;
+    width: 90%;
+    img{
+        width: 12rem;
+    }
+}

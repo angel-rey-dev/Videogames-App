@@ -39,37 +39,35 @@ export function searchByName(name) {
             console.log(error)
             return dispatch({
                 type: "SEARCH_BY_NAME",
-                payload: []
+                payload: "Not Found"
             })
         }
     }
 }
 export function postNewVideogame(videogame) {
     return async (dispatch) => {
-        // try {
-        let json = await axios.post("http://localhost:3001/videogame", videogame)
-        return json
-        //     return dispatch({
-        //         type: "POST_NEW_VIDEOGAME",
-        //         payload: json.data,
-        //     })
-        // } catch (error) {
-        //     console.log(error)
-        //     return dispatch({
-        //         type: "POST_NEW_VIDEOGAME",
-        //         payload: []
-        //     })
-        // }
+        try {
+            let json = await axios.post("http://localhost:3001/videogame", videogame)
+            return dispatch({
+                type: "POST_NEW_VIDEOGAME",
+                payload: json.data,
+            })
+        } catch (error) {
+            console.log(error)
+            return dispatch({
+                type: "POST_NEW_VIDEOGAME",
+                payload: []
+            })
+        }
     }
 }
 export function getVideogameDetail(id) {
     return async (dispatch) => {
         try {
-
             let json = await axios.get(`http://localhost:3001/videogame/${id}`)
             return dispatch({
                 type: "GET_VIDEOGAME_DETAIL",
-                id: id.toString() ,
+                id: id.toString(),
                 payload: json.data,
             })
         }

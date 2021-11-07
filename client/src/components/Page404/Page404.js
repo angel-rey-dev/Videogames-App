@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function NotFoundPage() {
+export default function Page404() {
     return (
         <div>
             404

@@ -2,7 +2,7 @@ import './App.scss';
 import HomePage from './components/HomePage/HomePage'
 import LandingPage from './components/LandingPage/LandingPage'
 import CreateGamePage from './components/CreateGamePage/CreateGamePage'
-import NotFoundPage from './components/NotFoundPage/NotFoundPage'
+import Page404 from './components/Page404/Page404'
 // react-rouder-dom
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import DetailPage from './components/DetailPage/DetailPage';
@@ -17,7 +17,7 @@ function App() {
           <Route exact path="/home" component={HomePage} />
           <Route exact path="/videogame/:id" component={DetailPage} />
           <Route exact path="/create-videogame" component={CreateGamePage} />
-          <Route path="*" component={NotFoundPage} />
+          <Route path="*" component={Page404} />
 
         </Switch>
       </div>
