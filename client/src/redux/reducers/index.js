@@ -85,22 +85,25 @@ export default function rootReducer(state = initialState, action) {
 
         //------------------------------------------------------------------
 
-        // case "FILTER_BY":
-        //     let filteredBy = []
-        //     if (action.payload === "all") filteredBy = [...state.videogames]
-        //     if (action.payload === "user") filteredBy = [...state.videogames].filter(game => game.createdInDb)
-        //     if (action.payload === "api") filteredBy = [...state.videogames].filter(game => !game.createdInDb)
-        //     else filteredBy = [...state.videogames].filter(game => game.genres.some(el => el.name === action.payload))
+        case "FILTER_BY":
+            const copyForFilter = [...state.videogames]
+            let filteredBy
 
-        //     return {
-        //         ...state,
-        //         allVideogames: filteredBy
-        //     };
+            switch (action.payload) {
+                case "all": filteredBy = copyForFilter; break;
+                case "user": filteredBy = copyForFilter.filter(game => game.createdInDb); break;
+                case "api": filteredBy = copyForFilter.filter(game => !game.createdInDb); break;
+                default: filteredBy = copyForFilter.filter(game => game.genres.some(el => el.name === action.payload)); break;
+            }
+            return {
+                ...state,
+                allVideogames: filteredBy.length === 0 ? "Not Found" : filteredBy
+            };
 
         //------------------------------------------------------------------
 
         case "ORDER_BY":
-            const copyForSort = [...state.allVideogames]
+            const copyForSort = [...state.videogames]
             let orderedBy
             switch (action.payload) {
                 case "alph-asc":
@@ -131,9 +134,11 @@ export default function rootReducer(state = initialState, action) {
                         return 0;
                     })
                     break;
-                default: orderedBy = copyForSort
+                default: return {
+                    ...state,
+                    allVideogames: copyForSort
+                }
             }
-
             return {
                 ...state,
                 allVideogames: orderedBy

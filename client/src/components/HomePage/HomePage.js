@@ -2,7 +2,7 @@ import "./HomePage.scss"
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { getAllGames, getAllGenres,  orderBy } from '../../redux/actions/index'
+import { getAllGames, getAllGenres, orderBy, filterBy } from '../../redux/actions/index'
 import { Link } from "react-router-dom";
 import Card from '../Card/Card';
 import Pagination from '../Pagination/Pagination';
@@ -33,10 +33,9 @@ export default function HomePage() {
     //     e.preventDefault()
     //     dispatch(getAllGames())
     // }
-    
-    const handleOrderBy = e => {
-        dispatch(orderBy(e.target.value)); setCurrentPage(1)
-    }
+
+    const handleOrderBy = e => { dispatch(orderBy(e.target.value)); setCurrentPage(1) }
+    const handleFilterBy = e => { dispatch(filterBy(e.target.value)); setCurrentPage(1) }
 
 
     return (
@@ -54,9 +53,10 @@ export default function HomePage() {
                     <select
                         name="order"
                         id="order"
+                        defaultValue="none"
                         onChange={e => handleOrderBy(e)}
                     >
-                        <option value="all">Unordered</option>
+                        <option value="none">Unordered</option>
                         <optgroup label="--- Alphabetical ---">
                             <option value="alph-asc">Ascendant</option>
                             <option value="alph-desc">Descendant</option>
@@ -73,8 +73,10 @@ export default function HomePage() {
                     <select
                         name="filter"
                         id="filter"
-                        // onChange={e => handleOrderBy(e)}
+                        defaultValue="all"
+                        onChange={e => handleFilterBy(e)}
                     >
+                        <option value="all">None</option>
                         <optgroup label="------- Origin -------">
                             <option value="all">All</option>
                             <option value="api">API</option>

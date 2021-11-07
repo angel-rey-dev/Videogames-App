@@ -83,20 +83,6 @@ export function getVideogameDetail(id) {
     }
 }
 
-// export function filterByOrigin(payload) {
-//     return {
-//         type: "FILTER_BY_ORIGIN",
-//         payload
-//     }
-// }
-
-// export function filterByGenre(payload) {
-//     return {
-//         type: "FILTER_BY_GENRE",
-//         payload
-//     }
-// }
-
 export function orderBy(payload) {
     return {
         type: "ORDER_BY",
