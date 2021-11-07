@@ -61,27 +61,27 @@ export default function rootReducer(state = initialState, action) {
 
         //------------------------------------------------------------------
 
-        case "FILTER_BY_GENRE":
-            let filteredByGenre = []
-            if (action.payload === "all") filteredByGenre = state.allVideogames
-            else filteredByGenre = [...state.videogames].filter(game => game.genres.some(el => el.name === action.payload))
+        // case "FILTER_BY_GENRE":
+        //     let filteredByGenre = []
+        //     if (action.payload === "all") filteredByGenre = state.allVideogames
+        //     else filteredByGenre = [...state.videogames].filter(game => game.genres.some(el => el.name === action.payload))
 
-            return {
-                ...state,
-                allVideogames: filteredByGenre.length === 0 ? "Not Found" : filteredByGenre
-            };
+        //     return {
+        //         ...state,
+        //         allVideogames: filteredByGenre.length === 0 ? "Not Found" : filteredByGenre
+        //     };
 
         // //-------------------------------------------------------------------
 
-        case "FILTER_BY_ORIGIN":
-            let filteredByOrigin = [...state.videogames]
-            if (action.payload === "user") filteredByOrigin = [...state.videogames].filter(game => game.createdInDb)
-            if (action.payload === "api") filteredByOrigin = [...state.videogames].filter(game => !game.createdInDb)
+        // case "FILTER_BY_ORIGIN":
+        //     let filteredByOrigin = [...state.videogames]
+        //     if (action.payload === "user") filteredByOrigin = [...state.videogames].filter(game => game.createdInDb)
+        //     if (action.payload === "api") filteredByOrigin = [...state.videogames].filter(game => !game.createdInDb)
 
-            return {
-                ...state,
-                allVideogames: filteredByOrigin
-            };
+        //     return {
+        //         ...state,
+        //         allVideogames: filteredByOrigin
+        //     };
 
         //------------------------------------------------------------------
 
@@ -100,38 +100,38 @@ export default function rootReducer(state = initialState, action) {
         //------------------------------------------------------------------
 
         case "ORDER_BY":
-            const videogamesCopy = [...state.allVideogames]
+            const copyForSort = [...state.allVideogames]
             let orderedBy
             switch (action.payload) {
                 case "alph-asc":
-                    orderedBy = videogamesCopy.sort((a, b) => {
+                    orderedBy = copyForSort.sort((a, b) => {
                         if (a.name > b.name) return 1;
                         if (a.name < b.name) return -1;
                         return 0;
                     })
                     break;
                 case "alph-desc":
-                    orderedBy = videogamesCopy.sort((a, b) => {
+                    orderedBy = copyForSort.sort((a, b) => {
                         if (a.name > b.name) return -1;
                         if (a.name < b.name) return 1;
                         return 0;
                     })
                     break;
                 case "rat-asc":
-                    orderedBy = videogamesCopy.sort((a, b) => {
+                    orderedBy = copyForSort.sort((a, b) => {
                         if (a.rating > b.rating) return 1;
                         if (a.rating < b.rating) return -1;
                         return 0;
                     })
                     break;
                 case "rat-desc":
-                    orderedBy = videogamesCopy.sort((a, b) => {
+                    orderedBy = copyForSort.sort((a, b) => {
                         if (a.rating > b.rating) return -1;
                         if (a.rating < b.rating) return 1;
                         return 0;
                     })
                     break;
-                default: orderedBy = videogamesCopy
+                default: orderedBy = copyForSort
             }
 
             return {
