@@ -62,13 +62,16 @@ export default function rootReducer(state = initialState, action) {
         //------------------------------------------------------------------
 
         case "FILTER_BY_GENRE":
-            let filteredByGenre = [...state.videogames].filter(game => game.genres.some(el => el.name === action.payload))
+            let filteredByGenre = []
+            if (action.payload === "all") filteredByGenre = state.allVideogames
+            else filteredByGenre = [...state.videogames].filter(game => game.genres.some(el => el.name === action.payload))
+
             return {
                 ...state,
-                allVideogames: action.payload === "all" ? state.videogames : filteredByGenre
+                allVideogames: filteredByGenre.length === 0 ? "Not Found" : filteredByGenre
             };
 
-        //-------------------------------------------------------------------
+        // //-------------------------------------------------------------------
 
         case "FILTER_BY_ORIGIN":
             let filteredByOrigin = [...state.videogames]
@@ -82,32 +85,58 @@ export default function rootReducer(state = initialState, action) {
 
         //------------------------------------------------------------------
 
-        case "ORDER_BY_NAME":
-            let orderByName = [...state.allVideogames].sort((a, b) => {
-                if (a.name > b.name) return 1;
-                if (a.name < b.name) return -1;
-                return 0;
-            })
-            if (action.payload === "desc") orderByName = orderByName.reverse()
+        // case "FILTER_BY":
+        //     let filteredBy = []
+        //     if (action.payload === "all") filteredBy = [...state.videogames]
+        //     if (action.payload === "user") filteredBy = [...state.videogames].filter(game => game.createdInDb)
+        //     if (action.payload === "api") filteredBy = [...state.videogames].filter(game => !game.createdInDb)
+        //     else filteredBy = [...state.videogames].filter(game => game.genres.some(el => el.name === action.payload))
+
+        //     return {
+        //         ...state,
+        //         allVideogames: filteredBy
+        //     };
+
+        //------------------------------------------------------------------
+
+        case "ORDER_BY":
+            const videogamesCopy = [...state.allVideogames]
+            let orderedBy
+            switch (action.payload) {
+                case "alph-asc":
+                    orderedBy = videogamesCopy.sort((a, b) => {
+                        if (a.name > b.name) return 1;
+                        if (a.name < b.name) return -1;
+                        return 0;
+                    })
+                    break;
+                case "alph-desc":
+                    orderedBy = videogamesCopy.sort((a, b) => {
+                        if (a.name > b.name) return -1;
+                        if (a.name < b.name) return 1;
+                        return 0;
+                    })
+                    break;
+                case "rat-asc":
+                    orderedBy = videogamesCopy.sort((a, b) => {
+                        if (a.rating > b.rating) return 1;
+                        if (a.rating < b.rating) return -1;
+                        return 0;
+                    })
+                    break;
+                case "rat-desc":
+                    orderedBy = videogamesCopy.sort((a, b) => {
+                        if (a.rating > b.rating) return -1;
+                        if (a.rating < b.rating) return 1;
+                        return 0;
+                    })
+                    break;
+                default: orderedBy = videogamesCopy
+            }
 
             return {
                 ...state,
-                allVideogames: action.payload === "none" ? state.videogames : orderByName
-            };
-
-        //-------------------------------------------------------------------
-
-        case "ORDER_BY_RATING":
-            let orderByRating = [...state.allVideogames].sort((a, b) => {
-                if (a.rating > b.rating) return 1;
-                if (a.rating < b.rating) return -1;
-                return 0;
-            })
-            if (action.payload === "desc") orderByRating = orderByRating.reverse()
-
-            return {
-                ...state,
-                allVideogames: action.payload === "none" ? state.videogames : orderByRating
+                allVideogames: orderedBy
             };
 
         //-------------------------------------------------------------------

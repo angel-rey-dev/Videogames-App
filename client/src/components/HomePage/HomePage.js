@@ -2,7 +2,7 @@ import "./HomePage.scss"
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { getAllGames, getAllGenres, filterByOrigin, orderByName, orderByRating, filterByGenre } from '../../redux/actions/index'
+import { getAllGames, getAllGenres, filterByOrigin, filterByGenre, orderBy} from '../../redux/actions/index'
 import { Link } from "react-router-dom";
 import Card from '../Card/Card';
 import Pagination from '../Pagination/Pagination';
@@ -35,8 +35,10 @@ export default function HomePage() {
     // }
     const handleFilterByOrigin = e => { dispatch(filterByOrigin(e.target.value)); setCurrentPage(1) }
     const handleFilterByGenre = e => { dispatch(filterByGenre(e.target.value)); setCurrentPage(1) }
-    const handleOrderByName = e => { dispatch(orderByName(e.target.value)); setCurrentPage(1) }
-    const handleOrderByRating = e => { dispatch(orderByRating(e.target.value)); setCurrentPage(1) }
+    const handleOrderBy = e => {
+        dispatch(orderBy(e.target.value)); setCurrentPage(1)
+    }
+
 
     return (
         <div className="main">
@@ -48,25 +50,22 @@ export default function HomePage() {
             {/* Filtrados */}
             <section className="filters">
 
-                {/* Order by - Alphabetic */}
                 <div>
-                    <label htmlFor="name">Alphabetic:</label>
-                    <select name="name" id="name" onChange={e => handleOrderByName(e)}>
-                        {/* <optgroup label="Choose an order"> */}
-                        <option value="none">Choose one...</option>
-                        <option value="asc">Ascendente</option>
-                        <option value="desc">Descendente</option>
-                        {/* </optgroup> */}
-                    </select>
-                </div>
-
-                {/* Order by - Rating */}
-                <div>
-                    <label htmlFor="rating">Rating:</label>
-                    <select name="rating" id="rating" onChange={e => handleOrderByRating(e)}>
-                        <option value="none">Choose one...</option>
-                        <option value="asc">Ascendente</option>
-                        <option value="desc">Descendente</option>
+                    <label htmlFor="order">Order by:</label>
+                    <select
+                        name="order"
+                        id="order"
+                        onChange={e => handleOrderBy(e)}
+                    >
+                        <option value="none">Unordered</option>
+                        <optgroup label="Alphabetical ">
+                            <option value="alph-asc">Ascendant</option>
+                            <option value="alph-desc">Descendant</option>
+                        </optgroup>
+                        <optgroup label="Rating">
+                            <option value="rat-asc">Ascendant</option>
+                            <option value="rat-desc">Descendant</option>
+                        </optgroup>
                     </select>
                 </div>
 

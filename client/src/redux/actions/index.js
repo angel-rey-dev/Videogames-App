@@ -97,26 +97,16 @@ export function filterByGenre(payload) {
     }
 }
 
-export function orderByName(payload) {
+export function orderBy(payload) {
     return {
-        type: "ORDER_BY_NAME",
+        type: "ORDER_BY",
         payload
     }
 }
 
-export function orderByRating(payload) {
+export function filterBy(payload) {
     return {
-        type: "ORDER_BY_RATING",
+        type: "FILTER_BY",
         payload
     }
 }
-
-
-
-
-
-
-
-
-
-
