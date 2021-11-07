@@ -1,14 +1,39 @@
 @import "../../scss/mixins.scss";
 @import "../../scss/variables.scss";
+@import "../../scss/keyframes.scss";
 
-.not-found{
+.not-found {
     @include flexbox;
     font-size: 3rem;
     margin: 2rem auto;
     text-align: center;
     text-transform: uppercase;
     width: 90%;
-    img{
+
+    img {
         width: 12rem;
+    }
+
+    button {
+        animation: changeColor 1s .5s alternate infinite;
+        background-color: transparent;
+        border: none;
+        color: $cyan;
+        cursor: pointer;
+        font-size: 6rem;
+        outline: none;
+        margin: 1rem auto;
+        text-shadow: 1px 01px 1px #000;
+        transition: all .5s;
+        &:hover{
+            animation: none;
+            color: #fff;
+            transform: scale(1.05);
+        }
+        &:active{
+            color: $cyan;
+            transform: scale(1);
+        }
+
     }
 }

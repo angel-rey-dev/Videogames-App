@@ -61,30 +61,6 @@ export default function rootReducer(state = initialState, action) {
 
         //------------------------------------------------------------------
 
-        // case "FILTER_BY_GENRE":
-        //     let filteredByGenre = []
-        //     if (action.payload === "all") filteredByGenre = state.allVideogames
-        //     else filteredByGenre = [...state.videogames].filter(game => game.genres.some(el => el.name === action.payload))
-
-        //     return {
-        //         ...state,
-        //         allVideogames: filteredByGenre.length === 0 ? "Not Found" : filteredByGenre
-        //     };
-
-        // //-------------------------------------------------------------------
-
-        // case "FILTER_BY_ORIGIN":
-        //     let filteredByOrigin = [...state.videogames]
-        //     if (action.payload === "user") filteredByOrigin = [...state.videogames].filter(game => game.createdInDb)
-        //     if (action.payload === "api") filteredByOrigin = [...state.videogames].filter(game => !game.createdInDb)
-
-        //     return {
-        //         ...state,
-        //         allVideogames: filteredByOrigin
-        //     };
-
-        //------------------------------------------------------------------
-
         case "FILTER_BY":
             const copyForFilter = [...state.videogames]
             let filteredBy

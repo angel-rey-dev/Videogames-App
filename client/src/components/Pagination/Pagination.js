@@ -1,5 +1,4 @@
 import React from 'react'
-// import { use } from 'react-router-dom';
 import "./Pagination.scss";
 
 export default function Pagination({ currentPage, videogamesPerPage, allVideogames, pagination }) {
@@ -10,25 +9,20 @@ export default function Pagination({ currentPage, videogamesPerPage, allVideogam
         <nav className="pagination">
             <ul className="pagination__items-container">
                 {
-                    pageNumbers.length 
-                    ? pageNumbers.map(number => {
-                        return (
-                            <li key={number} className="pagination__item">
-                                <button
-                                    className="pagination__button"
-                                    onClick={(e) => {
-                                        pagination(number)
-                                        if(currentPage === number){
-                                            e.target.classList.add("pagination__active-button")
-                                        }
-                                    }}
-                                >
-                                    {number}
-                                </button>
-                            </li>
-                        )
-                    })
-                    : <></>
+                    pageNumbers.length
+                        ? pageNumbers.map(number => {
+                            return (
+                                <li key={number} className="pagination__item">
+                                    <button
+                                        className={`pagination__button ${currentPage === number ? "pagination__button--active" : ""}`}
+                                        onClick={() => pagination(number)}
+                                    >
+                                        {number}
+                                    </button>
+                                </li>
+                            )
+                        })
+                        : <></>
                 }
             </ul>
         </nav>
