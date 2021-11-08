@@ -1,0 +1,51 @@
+@import "../../scss/variables.scss";
+@import "../../scss/mixins.scss";
+
+.handle-games {
+    @include flexbox;
+    font-size: 2rem;
+    font-family: $main-font;
+    display: flex;
+    gap: 4rem;
+    width: 100%;
+
+    div {
+        @include flexbox;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    label {
+        font-size: 2.3rem;
+        letter-spacing: 1px;
+        text-decoration: underline;
+        text-decoration-color: $cyan;
+    }
+
+    select {
+        padding: 1rem 2rem;
+        font-size: 1.6rem;
+        background-color: rgba(10, 10, 10, 0.8);
+        border: none;
+        border-bottom: 1px solid $cyan;
+        color: #fff;
+        cursor: pointer;
+        margin: 0 2rem;
+        padding: 1rem 1rem;
+        outline: none;
+        transition: all .5s;
+        width: 90%;
+
+        &:hover {
+            background-color: rgba(26, 26, 26, 0.8);
+        }
+
+        &:active {
+            background-color: rgba(15, 15, 15, 0.8);
+        }
+    }
+
+    option {
+        background-color: #101010;
+    }
+}
