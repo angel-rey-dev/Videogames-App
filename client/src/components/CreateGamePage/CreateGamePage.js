@@ -90,6 +90,14 @@ export default function CreateGamePage() {
         } else isValid = true
         return isValid
     }
+    const capitalizeInput = () => {
+        setInput({
+            ...input,
+            name: input.name.trim().charAt(0).toUpperCase() + input.name.trim().slice(1),
+            description: input.description.trim().charAt(0).toUpperCase() + input.description.trim().slice(1),
+        })
+
+    }
 
     const handleReset = () => {
         setInput({
@@ -117,6 +125,7 @@ export default function CreateGamePage() {
         // console.log(input)
 
         if (validateForm()) {
+            capitalizeInput()
             dispatch(postNewVideogame(input))
             alert('Videogame created successfully!')
             history.push('/')
@@ -306,7 +315,7 @@ export default function CreateGamePage() {
                                                     checkboxValue={genre}
                                                     onChangeFunction={handleCheckboxChange}
                                                     isActive={input.genres.includes(genre)}
-                                                    />
+                                                />
                                             ))}
                                         </div>
                                         {
@@ -326,6 +335,7 @@ export default function CreateGamePage() {
                                                     key={platform}
                                                     checkboxValue={platform}
                                                     onChangeFunction={handleCheckboxChange}
+                                                    isActive={input.platforms.includes(platform)}
                                                 />
                                             ))}
                                         </div>

@@ -70,6 +70,10 @@ videogameRouter.post("/", async (req, res) => {
         platforms,
         createdInDb
     } = req.body;
+
+    description = description.trim().charAt(0).toUpperCase() + description.trim().slice(1)
+    name = name.trim().charAt(0).toUpperCase() + name.trim().slice(1)
+
     // platforms = platforms.join(', ')
     try {
         //     // ---> Create game using Videogame model
