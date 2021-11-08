@@ -1,0 +1,144 @@
+@import "../../scss/variables.scss";
+@import "../../scss/mixins.scss";
+@import "../../scss/keyframes.scss";
+
+.navbar {
+
+    &__container {
+        animation: changeBtnBorderColor 1.5s .5s alternate infinite;
+        background-color: rgba(0, 0, 0, 0.9);
+        border-right: 1px solid $cyan;
+        display: flex;
+        padding: 1.5rem 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        max-width: 30rem;
+        height: 100vh;
+        width: 80%;
+        transform: translateX(-99.5%);
+        transition: all .5s;
+        z-index: 10000000;
+
+    }
+
+    &__social-media {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        position: absolute;
+        top: 2rem;
+        left: 0;
+        width: 100%;
+
+        a {
+            color: #ccc;
+            cursor: pointer;
+            display: block;
+            font-size: 3.5rem;
+            transition: all .5s;
+
+            &:hover {
+                color: #ffffff;
+                transform: scale(1.05);
+            }
+
+            &:active {
+                color: $cyan;
+                transform: scale(1);
+            }
+        }
+    }
+
+    &__open {
+        animation: changeBtnBorderColor 1.5s .5s alternate infinite;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #ffffff;
+        cursor: pointer;
+        border: 2px solid $cyan;
+        border-left: none;
+        border-radius: 0 5rem 5rem 0;
+        font-size: 2.5rem;
+        height: 5rem;
+        width: 59px;
+        position: absolute;
+        top: 5rem;
+        right: -59px;
+
+        @include for-medium-screens {
+            top: 30%;
+        }
+
+        @include for-large-screens {
+            top: 45%;
+        }
+
+        &--active {
+            transform: translateX(0)
+        }
+    }
+
+    &__content {
+        @include flexbox;
+        gap: 5rem;
+        margin: auto;
+        overflow-y: scroll;
+        width: 100%;
+
+        @media screen and (max-width: 450px) {
+            gap: 2rem;
+
+        }
+    }
+
+    &__logo {
+        width: 6rem;
+
+        @media screen and (max-height: 630px) {
+            display: none;
+        }
+
+
+    }
+
+    &__btn {
+        background-color: #141414;
+        border: 2px solid #3f3f3f;
+        border-radius: 5rem;
+        color: #e2e2e2;
+        cursor: pointer;
+        display: inline-block;
+        font-family: $main-font;
+        letter-spacing: .5px;
+        text-decoration: none;
+
+        font: {
+            size: 2rem;
+            family: $main-font;
+            weight: 500;
+        }
+
+        padding: 1rem 3rem;
+        text-transform: uppercase;
+        transition: all 0.3s ease-in-out;
+
+        i {
+            display: inline-block;
+            font-size: 2rem;
+            line-height: 1.5rem;
+            transform: translateX(-5px);
+        }
+
+        &:hover {
+            background-color: #181818;
+            border-color: #ffffff;
+        }
+
+        &:active {
+            background-color: #101010;
+            border-color: $cyan;
+            color: #ccc;
+            transform: scale(.95);
+        }
+    }
+}
