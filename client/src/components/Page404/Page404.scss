@@ -1,0 +1,93 @@
+@import "../../scss/variables.scss";
+@import "../../scss/mixins.scss";
+@import "../../scss/keyframes.scss";
+
+.page-404 {
+    @include flexbox;
+    background-color: #202020;
+    background-image: linear-gradient(to bottom, #020202, #252525, #020202);
+    min-height: 100vh;
+    padding: 5rem 2rem;
+    width: 100%;
+
+    &__content {
+        display: grid;
+        grid-template-areas:
+            "image"
+            "title"
+            "button";
+        gap: 2rem;
+        place-items: center;
+        width: 90%;
+
+        img {
+            animation: fadeIn 2s 1s ease-in-out forwards alternate infinite;
+            ;
+            grid-area: image;
+            max-width: 50rem;
+            opacity: .6;
+            transition: all .5s;
+            transform: translateY(-20%);
+            width: 100%;
+        }
+
+        h2 {
+            grid-area: title;
+            font-size: 7rem;
+            font-family: $main-font;
+            letter-spacing: 2px;
+            text-shadow: -1px 0 2px #000;
+            text-align: center;
+
+            @media (max-width: 400px) {
+                font-size: 5rem;
+            }
+
+            @include for-medium-screens {
+                font-size: 8rem;
+            }
+        }
+
+        span {
+            color: $cyan;
+        }
+
+    }
+
+    &__btn {
+        animation: changeBtnBorderColor .5s 2s forwards alternate infinite;
+        grid-area: button;
+        background-color: #141414;
+        border: 2px solid #3f3f3f;
+        border-radius: 5rem;
+        color: #e2e2e2;
+        cursor: pointer;
+        display: inline-block;
+        font-family: $main-font;
+        letter-spacing: .5px;
+        text-decoration: none;
+
+        font: {
+            size: 2rem;
+            family: $main-font;
+            weight: 500;
+        }
+
+        padding: 1rem 3rem;
+        text-transform: uppercase;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+            animation: none;
+            background-color: #181818;
+            border-color: #ffffff;
+        }
+
+        &:active {
+            background-color: #101010;
+            border-color: $cyan;
+            color: #ccc;
+            transform: scale(.95);
+        }
+    }
+}
