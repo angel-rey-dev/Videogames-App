@@ -305,7 +305,8 @@ export default function CreateGamePage() {
                                                     key={genre}
                                                     checkboxValue={genre}
                                                     onChangeFunction={handleCheckboxChange}
-                                                />
+                                                    isActive={input.genres.includes(genre)}
+                                                    />
                                             ))}
                                         </div>
                                         {

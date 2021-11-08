@@ -13,7 +13,11 @@
     letter-spacing: .5px;
     padding: 1rem 1.5rem;
 
-    @include for-medium-screens{
+    &--active{
+        border: 1px solid $cyan;
+    }
+
+    @include for-medium-screens {
         padding: .5rem 1.5rem;
     }
 

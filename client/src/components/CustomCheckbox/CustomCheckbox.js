@@ -1,9 +1,10 @@
 import "./CustomCheckbox.scss"
 import React from 'react'
 
-export default function CustomCheckbox({ checkboxValue, onChangeFunction}) {
+export default function CustomCheckbox({ checkboxValue, onChangeFunction, isActive }) {
     return (
-        <div className="custom-checkbox">
+        <div className={`custom-checkbox ${isActive ? 'custom-checkbox--active' : ''}`}>
+
             <label
                 className="custom-checkbox__label"
                 htmlFor={checkboxValue} >
@@ -13,7 +14,7 @@ export default function CustomCheckbox({ checkboxValue, onChangeFunction}) {
                 className="custom-checkbox__input"
                 type="checkbox"
                 id={checkboxValue}
-                onChange={e =>  onChangeFunction(e) }
+                onChange={e => onChangeFunction(e)}
                 name={checkboxValue}
                 value={checkboxValue}
             />

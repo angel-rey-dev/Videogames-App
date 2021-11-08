@@ -5,7 +5,9 @@
   padding: 0px;
   box-sizing: border-box;
 }
-
+::-webkit-scrollbar {
+  display: none;
+}
 :root {
   scroll-behavior: smooth;
   font-size: 62.5%;
