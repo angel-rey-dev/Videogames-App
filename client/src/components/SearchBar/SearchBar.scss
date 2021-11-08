@@ -1,45 +1,58 @@
 @import "../../scss/variables.scss";
 @import "../../scss/mixins.scss";
+@import "../../scss/keyframes.scss";
 
 .search-bar {
-    @include border;
     @include flexbox;
-    max-width: 60rem;
-    width: 80%;
+    max-width: 50rem;
+    width: 90%;
     position: relative;
 
     &__input {
-
         background-color: #000000;
-        border: 2px solid #fff;
+        border: 2px solid #ccc;
         border-radius: 5rem;
         font-size: 1.7rem;
         color: #fff;
         outline: none;
         padding: 1.2rem 2.5rem;
+        padding-right: 6rem;
         transition: all .5s;
         width: 100%;
+
+        &:hover {
+            background-color: #161616;
+            border-color: #fff;
+        }
 
         &::placeholder {
             color: #8080809c;
         }
 
         &:focus {
+            background-color: rgba(8, 8, 8, 0.9);
             border-color: $cyan;
 
-            // &:invalid {
-            //     border-color: red;
-            // }
+        }
+
+        &--error {
+            border-color: red !important;
         }
     }
 
     &__error {
+        animation: formErrorAnimation 1s alternate infinite;
         color: red;
         font-size: 1.7rem;
         text-align: left;
         position: absolute;
-        bottom: -3rem;
+        bottom: -5rem;
+        text-align: center;
         width: 100%;
+
+        @include for-large-screens {
+            bottom: -3rem;
+        }
     }
 
     &__button {

@@ -7,13 +7,13 @@ import homeIcon from '../../assets/icons/home-icon.svg'
 import bannerHd from '../../assets/gaming-setup.webp'
 import Loader from '../Loader/Loader'
 import CustomCheckbox from '../CustomCheckbox/CustomCheckbox'
+import Footer from '../Footer/Footer'
 
 export default function CreateGamePage() {
     const dispatch = useDispatch()
     const history = useHistory()
     const allGenres = useSelector(state => state.allGenres)
     const allPlatforms = useSelector(state => state.allPlatforms)
-
     const regex = {
         name: /^[a-zA-Z0-9\s]{3,50}$/,
         description: /^[a-zA-Z0-9\s]{3,400}$/,
@@ -21,15 +21,6 @@ export default function CreateGamePage() {
         rating: /^[1-5]{1}$|^[1-5]{1}[.]{1}[0-9]{1}$/,
         background_image: /^[^\s]*$/
     }
-
-
-    useEffect(() => {
-        dispatch(getAllGenres())
-        dispatch(getAllPlatforms())
-    }, [dispatch])
-
-
-
     const [input, setInput] = useState({
         name: '',
         background_image: "",
@@ -48,6 +39,7 @@ export default function CreateGamePage() {
         genres: false,
         platforms: false
     })
+
     const inputValidation = (e) => {
         const { name, value } = e.target
         if (regex[name].test(value.trim())) setInputError({ ...inputError, [name]: false })
@@ -99,17 +91,42 @@ export default function CreateGamePage() {
         return isValid
     }
 
+    const handleReset = () => {
+        setInput({
+            name: '',
+            background_image: "",
+            description: '',
+            released: '',
+            rating: '',
+            genres: [],
+            platforms: []
+        })
+        setInputError({
+            name: false,
+            description: false,
+            rating: false,
+            released: false,
+            background_image: false,
+            genres: false,
+            platforms: false
+        })
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(input)
+        // console.log(input)
 
         if (validateForm()) {
             dispatch(postNewVideogame(input))
+            alert('Videogame created successfully!')
             history.push('/')
-        } else {
-            console.log('invalid')
         }
     }
+
+    useEffect(() => {
+        dispatch(getAllGenres())
+        dispatch(getAllPlatforms())
+    }, [dispatch])
 
 
     return (
@@ -324,13 +341,25 @@ export default function CreateGamePage() {
 
                                 {/* ------------------------------------------------------ */}
 
-                                <button
-                                    className="form__submit-btn"
-                                    onClick={e => handleSubmit(e)}
-                                    type="submit"
-                                >
-                                    Create
-                                </button>
+
+                                <div className="form__buttons-container">
+
+                                    <button
+                                        className="form__reset-button"
+                                        type="reset"
+                                        onClick={() => handleReset()}
+                                    >
+                                        Reset
+                                    </button>
+
+                                    <button
+                                        className="form__submit-button"
+                                        onClick={e => handleSubmit(e)}
+                                        type="submit"
+                                    >
+                                        Create
+                                    </button>
+                                </div>
                             </form>
 
                             <div className="form-container__banner">
@@ -345,6 +374,11 @@ export default function CreateGamePage() {
                 <img src={bannerHd} alt="" />
             </div>
 
+            {
+                allGenres.length > 0 && allPlatforms.length > 0
+                    ? <Footer />
+                    : <Loader />
+            }
         </section>
     )
 }

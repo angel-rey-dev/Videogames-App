@@ -24,7 +24,7 @@ genresRouter.get("/", async (req, res) => {
         const allGeneres = await Genre.findAll()
         res.status(200).json(allGeneres)
     } catch (error) {
-        res.status(404).json("Error:", error)
+        res.status(404).json(error)
     }
 })
 

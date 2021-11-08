@@ -1,21 +1,28 @@
 import "./Header.scss"
 import React from 'react'
 import logo from '../../assets/general-logo.svg'
-import SearchBar from '../SearchBar/SearchBar'
+import Slider from "../Slider/Slider"
 
-export default function Header() {
+export default function Header({ imagesForSlider }) {
     return (
         <header className="header">
-            <div className="header__flex-container">
 
+            <div className="header__flex-container">
                 <img
                     alt="THE GAMEROOM Logo"
                     className="header__logo"
                     src={logo}
-                /> 
-
-                <SearchBar/>
+                />
+                <i
+                    className="fas fa-angle-double-down header__icon "
+                ></i>
             </div>
+
+            <Slider
+                imagesForSlider={imagesForSlider}
+            />
+
+
         </header>
     )
 }

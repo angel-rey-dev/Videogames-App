@@ -101,7 +101,7 @@
         "description"
         "image"
         "checkbox"
-        "button"
+        "buttons"
     ;
 
     @include for-medium-screens {
@@ -111,18 +111,7 @@
             "rating-and-released  description"
             "image description "
             "checkbox checkbox"
-            "button button"
-        ;
-    }
-
-    @include for-large-screens {
-        grid-template-areas:
-            "title title"
-            "name description "
-            "rating-and-released  description"
-            "image description "
-            "checkbox checkbox"
-            "button button"
+            "buttons buttons"
         ;
     }
 
@@ -360,7 +349,7 @@
     }
 
     &__genres-container {
-        animation: changeBtnBorderColor .5s  alternate infinite;
+        animation: changeBtnBorderColor .5s alternate infinite;
         border-top: 1px solid $cyan;
         padding: 2rem 0;
         position: relative;
@@ -371,40 +360,50 @@
         @extend .form__genres-container;
     }
 
-    &__submit-btn {
+    &__buttons-container {
+        @include flexbox;
+        grid-area: buttons;
+        gap: 2rem;
+
+        @include for-medium-screens {
+            flex-flow: row nowrap;
+            gap: 5rem;
+        }
+
+        button {
+            background-color: #141414;
+            border: 2px solid #3f3f3f;
+            border-radius: 5rem;
+            color: #e2e2e2;
+            cursor: pointer;
+            letter-spacing: .5px;
+            font: {
+                size: 2.5rem;
+                family: $main-font;
+                weight: 500;
+            }
+            max-width: 30rem;
+            padding: 1.2rem 6rem;
+            text-transform: uppercase;
+            transition: all 0.3s ease-in-out;
+
+            &:hover {
+                background-color: #181818;
+                border-color: #303030;
+                transform: translateY(-4px) scale(1.02);
+            }
+
+            &:active {
+                background-color: #101010;
+                border-color: #fff;
+                color: #ccc;
+                transform: scale(1);
+            }
+        }
+    }
+    &__submit-button{
         animation: changeBtnBorderColor .5s 2s alternate infinite;
         animation-fill-mode: forwards;
-        background-color: #141414;
-        border: 2px solid #202020;
-        border-radius: 5rem;
-        color: #e2e2e2;
-        cursor: pointer;
-        letter-spacing: .5px;
-
-        font: {
-            size: 2.5rem;
-            family: $main-font;
-            weight: 500;
-        }
-
-        grid-area: button;
-        max-width: 30rem;
-        padding: 1.2rem 6rem;
-        text-transform: uppercase;
-        transition: all 0.3s ease-in-out;
-
-        &:hover {
-            background-color: #181818;
-            border-color: #303030;
-            transform: translateY(-4px) scale(1.02);
-        }
-
-        &:active {
-            background-color: #101010;
-            border-color: #fff;
-            color: #ccc;
-            transform: scale(1);
-        }
     }
 }
 
