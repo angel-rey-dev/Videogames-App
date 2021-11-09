@@ -8,19 +8,16 @@ require('dotenv').config();
 const { API_KEY } = process.env;
 // ----------------------------
 
-// const response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}`)
-// let response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=${page}`)
-
 // Get data form API
 const getApiData = async () => {
-    const apiUrl = page => axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page_size=40&page=${page}`)
-    const requests = [apiUrl(1), apiUrl(2), apiUrl(3)]
+    const apiUrl = page => axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=${page}`)
+    const requests = [apiUrl(1), apiUrl(2), apiUrl(3), apiUrl(4), apiUrl(5), apiUrl(6)]
     const games = []
     await Promise.all(requests)
         .then(responses => {
             responses.forEach(response => games.push(
                 response.data.results.map(game => {
-                    const { name, background_image, genres, id,rating } = game;
+                    const { name, background_image, genres, id, rating } = game;
                     return {
                         id,
                         name,
@@ -30,8 +27,12 @@ const getApiData = async () => {
                     }
                 })
             ))
-        });
+        })
+        .catch(error => {
+            return error
+        })
     return games.flat()
+
 }
 
 // Get data from DataBase
@@ -67,9 +68,9 @@ const getAllGames = async () => {
 videogamesRouter.get("/", async (req, res) => {
     const name = req.query.name
     const allGames = await getAllGames();
-    
+
     if (name) {
-        const filteredGames = await allGames.filter(game => {
+        const filteredGames = allGames.filter(game => {
             return game.name.toLowerCase().includes(name.toLowerCase())
         })
         filteredGames.length

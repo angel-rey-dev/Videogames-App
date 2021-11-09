@@ -7,39 +7,24 @@ require('dotenv').config();
 const { API_KEY } = process.env;
 // ----------------------------
 
-// Get data from API
-const getApiData = async (gameId) => {
-    try {
-        const response = await axios.get(`https://api.rawg.io/api/games/${gameId}?key=${API_KEY}`)
-        const gameData = await response.data
-        return gameData
-    } catch (error) {
-        return error
-    }
-}
-// --> GET -->  videogame/
-videogameRouter.get("/", (req, res) => res.send("Videogame router"))
-
-
-//---------------------------------------------------------------------------------
-// ********************* Falta hacer validaciones *********************************
-//---------------------------------------------------------------------------------
-
-
 // --> GET -->  videogame/:id
-videogameRouter.get("/:id", async (req, res) => {
+videogameRouter.get("/:id", (req, res) => {
     let id = req.params.id
-    if (typeof id !== "string") id.toString();
+    if (typeof id !== "string") id = id.toString();
 
-    try {
-        if (id.includes("-")) {
-            let videogame = await Videogame.findByPk(id)
-            if (Array(videogame).length > 0) res.status(200).json(Array(videogame))
-        }
-        else {
-            const gameInfoFromApi = await getApiData(id);
-            if (gameInfoFromApi.name) {
-                const { name, background_image, genres, description, released, rating, platforms } = gameInfoFromApi
+    if (id.length > 10) {
+        axios.get("http://localhost:3001/videogames")
+            .then(response => {
+                let videogame = response.data.find(videogame => videogame.id === id)
+                if (videogame) res.status(200).json(videogame)
+                else res.status(404).json({ message: "Videogame not found" })
+            })
+            .catch(error => res.status(500).json({ message: "Internal server error", error }))
+    }
+    else {
+        axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`)
+            .then(response => {
+                const { name, background_image, genres, description, released, rating, platforms } = response.data
                 const gameDetail = {
                     name,
                     background_image,
@@ -51,56 +36,49 @@ videogameRouter.get("/:id", async (req, res) => {
                 }
                 res.status(200).json(gameDetail)
             }
-        }
-    } catch (error) {
-        res.status(404).json("Game Not Found")
+            )
+            .catch(error => {
+                res.status(500).json({ error: error })
+            })
     }
 })
 
 // --> POST -->  videogame/
-videogameRouter.post("/", async (req, res) => {
-    //     // ---> Get data from request.body
-    let {
+videogameRouter.post("/", (req, res) => {
+    // ---> Get data from request.body
+    let { name, background_image, description, released, rating, genres, platforms, createdInDb } = req.body;
+    description = description.trim().charAt(0).toUpperCase() + description.trim().slice(1)
+    name = name.trim().charAt(0).toUpperCase() + name.trim().slice(1)
+
+    // ---> Create game using Videogame model
+    Videogame.create({
         name,
         background_image,
         description,
         released,
         rating,
-        genres,
         platforms,
         createdInDb
-    } = req.body;
-
-    description = description.trim().charAt(0).toUpperCase() + description.trim().slice(1)
-    name = name.trim().charAt(0).toUpperCase() + name.trim().slice(1)
-
-    // platforms = platforms.join(', ')
-    try {
-        //     // ---> Create game using Videogame model
-        const gameCreated = await Videogame.create({ //devuelvo un array (OJOOO!!!!)
-            name,
-            background_image,
-            description,
-            released,
-            rating,
-            platforms,
-            createdInDb
+    })
+        .then(videogame => {
+            // ---> Create genres using Genre model
+            Genre.findAll({
+                where: { name: genres }
+            })
+                .then(genres => {
+                    videogame.addGenres(genres)
+                        .then(() => {
+                            res.status(201).json(videogame)
+                        })
+                        .catch(error => {
+                            res.status(500).json({ error })
+                        })
+                })
+                .catch(error => {
+                    res.status(500).json({ error: error })
+                })
         })
-
-        // --> Search all genres and add to created game
-        const genresDb = await Genre.findAll({
-            where: { name: genres }
-        })
-        gameCreated.addGenre(genresDb)
-        // --> Response from POST Request
-        // res.status(200).json(gameCreated)
-        res.status(200).json(gameCreated)
-    }
-    // --> Handle error 
-    catch (error) {
-        console.log(error)
-        res.status(404).json(error)
-    }
+        .catch(error => res.status(500).json({ message: "Internal server error", error }))
 })
 
 module.exports = videogameRouter;

@@ -11,21 +11,25 @@ const {
 
 const { Videogame, Genre } = require('../db')
 
-// Get genres from API and save into DataBase 
-genresRouter.get("/", async (req, res) => {
-    try {
-        const genresApiResponse = await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`)
-        const genresApiData = await genresApiResponse.data.results.map(genre => genre.name)
-        genresApiData.forEach(genre => {
-            Genre.findOrCreate({
-                where: { name: genre }
+// Get all genres from API and save into DataBase 
+
+genresRouter.get("/", (req, res) => {
+    axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`)
+        .then(response => {
+            const genresApiData = response.data.results.map(genre => genre.name)
+            genresApiData.forEach(genre => {
+                Genre.findOrCreate({
+                    where: { name: genre }
+                })
             })
+            return Genre.findAll()
         })
-        const allGeneres = await Genre.findAll()
-        res.status(200).json(allGeneres)
-    } catch (error) {
-        res.status(404).json(error)
-    }
+        .then(genres => {
+            res.status(200).json(genres)
+        })
+        .catch(error => {
+            res.status(404).json(error)
+        })
 })
 
 module.exports = genresRouter;
