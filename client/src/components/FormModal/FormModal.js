@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 export default function FormModal() {
     return (
         <section className="form-modal">
+           
             <div className="form-modal__container">
 
                 <div className="form-modal__content" >
