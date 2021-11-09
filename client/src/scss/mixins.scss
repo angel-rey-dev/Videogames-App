@@ -1,19 +1,9 @@
-@mixin border($s:1px, $c:magenta) {
-    border: $s solid $c;
-}
-
 //  Flexbox
 @mixin flexbox($flow: column nowrap, $justify: center, $align: center) {
     display: flex;
     flex-flow: $flow;
     justify-content: $justify;
     align-items: $align;
-}
-
-// Horizontal center
-@mixin h-center {
-    margin-left: auto;
-    margin-right: auto;
 }
 
 // Media queries

@@ -378,11 +378,7 @@ export default function CreateGamePage() {
 
             {isValid && <FormModal />}
 
-            {
-                allGenres.length > 0 && allPlatforms.length > 0
-                    ? <Footer />
-                    : <Loader />
-            }
+            {allGenres.length > 0 && allPlatforms.length > 0 && <Footer />}
         </section>
     )
 }

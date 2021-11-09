@@ -24,26 +24,35 @@
     }
 
     &__logo {
-        animation: fadeIn 1s 3s ease-in-out forwards 1; 
         width: 70%;
         max-width: 35rem;
         opacity: 0;
         transform: translateY(10rem);
 
+        &--animation {
+            animation: fadeIn 1.5s ease-in-out forwards 1;
+
+        }
+
         @include for-medium-screens {
             max-width: 40rem;
         }
+
         @include for-large-screens {
             max-width: 45rem;
         }
     }
 
     &__icon {
-        animation: fadeIn 1.5s 4s ease-in-out forwards alternate infinite;; 
         color: $cyan;
         opacity: 0;
         font-size: 8rem;
         text-shadow: 0px 1px 5px #000000, 0px 1px 6px #000000;
         transform: translateY(-3rem);
+
+        &--animation {
+            animation: fadeIn 1.5s 1.5s ease-in-out forwards alternate infinite;
+            ;
+        }
     }
 }

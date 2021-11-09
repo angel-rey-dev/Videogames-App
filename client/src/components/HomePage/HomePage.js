@@ -44,6 +44,7 @@ export default function HomePage() {
 
             <Header
                 imagesForSlider={imagesForSlider}
+                isLoading={allVideogames.length === 0}
             />
 
             <Pagination
