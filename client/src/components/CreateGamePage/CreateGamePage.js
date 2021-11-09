@@ -1,7 +1,7 @@
 import './CreateGamePage.scss'
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { postNewVideogame, getAllGenres, getAllPlatforms } from '../../redux/actions'
 import homeIcon from '../../assets/icons/home-icon.svg'
 import bannerHd from '../../assets/gaming-setup.webp'
@@ -12,7 +12,6 @@ import FormModal from '../FormModal/FormModal'
 
 export default function CreateGamePage() {
     const dispatch = useDispatch()
-    const history = useHistory()
     const allGenres = useSelector(state => state.allGenres)
     const allPlatforms = useSelector(state => state.allPlatforms)
     const regex = {

@@ -9,7 +9,7 @@ export default function HandleGames({
         <section className="handle-games">
 
             <div>
-                <label htmlFor="order">Order by:</label>
+                <label htmlFor="order">Sort by:</label>
                 <select
                     name="order"
                     id="order"

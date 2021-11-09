@@ -43,16 +43,26 @@
     &__error {
         animation: formErrorAnimation 1s alternate infinite;
         color: red;
-        font-size: 1.7rem;
+        font-size: 1.2rem;
         text-align: left;
         position: absolute;
-        bottom: -5rem;
+        bottom: -2rem;
         text-align: center;
         width: 100%;
 
-        @include for-large-screens {
-            bottom: -3rem;
+        @media screen and (min-width: 450px) {
+            font-size: 1.3rem;
+            bottom: -4rem;
+
+
         }
+
+        @include for-medium-screens {
+            bottom: -4.2rem;
+            display: block;
+            font-size: 1.5rem;
+        }
+
     }
 
     &__button {
