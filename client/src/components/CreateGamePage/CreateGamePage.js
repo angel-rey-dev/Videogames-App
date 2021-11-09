@@ -8,6 +8,7 @@ import bannerHd from '../../assets/gaming-setup.webp'
 import Loader from '../Loader/Loader'
 import CustomCheckbox from '../CustomCheckbox/CustomCheckbox'
 import Footer from '../Footer/Footer'
+import FormModal from '../FormModal/FormModal'
 
 export default function CreateGamePage() {
     const dispatch = useDispatch()
@@ -39,6 +40,7 @@ export default function CreateGamePage() {
         genres: false,
         platforms: false
     })
+    const [isValid, setIsValid] = useState(false)
 
     const inputValidation = (e) => {
         const { name, value } = e.target
@@ -90,14 +92,6 @@ export default function CreateGamePage() {
         } else isValid = true
         return isValid
     }
-    const capitalizeInput = () => {
-        setInput({
-            ...input,
-            name: input.name.trim().charAt(0).toUpperCase() + input.name.trim().slice(1),
-            description: input.description.trim().charAt(0).toUpperCase() + input.description.trim().slice(1),
-        })
-
-    }
 
     const handleReset = () => {
         setInput({
@@ -125,10 +119,8 @@ export default function CreateGamePage() {
         // console.log(input)
 
         if (validateForm()) {
-            capitalizeInput()
             dispatch(postNewVideogame(input))
-            alert('Videogame created successfully!')
-            history.push('/')
+            setIsValid(true)
         }
     }
 
@@ -384,6 +376,8 @@ export default function CreateGamePage() {
             <div className="create-game-page__fixed-background">
                 <img src={bannerHd} alt="" />
             </div>
+
+            {isValid && <FormModal />}
 
             {
                 allGenres.length > 0 && allPlatforms.length > 0
