@@ -8,9 +8,12 @@ export default function Page404() {
     return (
         <section className="page-404">
             <div className="page-404__content">
-                <img src={illustration} alt="404" />
-                <h2>Page <span>not</span> found</h2>
-                <Link to="/home" className="page-404__btn">
+                <img src={illustration} alt="404" className="page-404__illustration" />
+                <h2
+                data-testid="page-404-title"
+                >Page <span>not</span> found</h2>
+                <Link to="/home" className="page-404__btn"
+                    data-testid="go-to-home-page-btn">
                     Go to home page
                 </Link>
             </div>
