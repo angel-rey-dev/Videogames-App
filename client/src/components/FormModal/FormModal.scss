@@ -1,0 +1,98 @@
+@import "../../scss/variables.scss";
+@import "../../scss/mixins.scss";
+
+.form-modal {
+    @include flexbox;
+    background-color: rgba(0, 0, 0, 0.9);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: 9999;
+
+    &__container {
+        @include flexbox;
+        max-width: 50rem;
+        opacity: 0.95;
+        position: relative;
+        text-shadow: -1px 0 2px #000;
+        width: 90%;
+
+        &::after {
+            position: absolute;
+            content: "";
+            top: calc(-1 * 3px);
+            left: calc(-1 * 3px);
+            z-index: -1;
+            width: calc(100% + 3px * 2);
+            height: calc(100% + 3px * 2);
+            background: linear-gradient(60deg,
+                    hsl(224, 85%, 66%),
+                    hsl(269, 85%, 66%),
+                    hsl(314, 85%, 66%),
+                    hsl(359, 85%, 66%),
+                    hsl(44, 85%, 66%),
+                    hsl(89, 85%, 66%),
+                    hsl(134, 85%, 66%),
+                    hsl(179, 85%, 66%));
+            background-size: 300% 300%;
+            background-position: 0 50%;
+            border-radius: calc(2 * 3px);
+            animation: moveGradient 4s alternate infinite;
+        }
+    }
+
+    &__content {
+        @include flexbox;
+        background-color: #000000;
+        background-image: repeating-radial-gradient(circle at 0 0, transparent 0, #000000 20px), repeating-linear-gradient(#08080855, #080808);
+        border-radius: 3px;
+        font-size: 2rem;
+        gap: 2rem;
+        margin: 1px;
+        opacity: .99;
+        padding: 4rem;
+        text-align: center;
+        width: 100%;
+
+        i {
+            font-size: 7rem;
+            color: $cyan;
+
+        }
+
+        a {
+            background-color: #141414;
+            border: 2px solid #3f3f3f;
+            border-radius: 5rem;
+            color: #e2e2e2;
+            cursor: pointer;
+            letter-spacing: .5px;
+            margin-top: 1.5rem;
+
+            font: {
+                size: 2rem;
+                family: $main-font;
+                weight: 500;
+            }
+
+            padding: 1rem 4rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+
+            &:hover {
+                background-color: #181818;
+                border-color: #ffffff;
+            }
+
+            &:active {
+                background-color: #000000;
+                border-color: $cyan;
+                color: #ccc;
+                transform: scale(.95);
+            }
+        }
+    }
+}
