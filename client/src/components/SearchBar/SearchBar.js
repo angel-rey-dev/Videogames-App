@@ -10,15 +10,18 @@ export default function SearchBar() {
     const dispatch = useDispatch()
     const regex = /^[a-zA-Z0-9\s]{3,40}$/
     const handleChange = (e) => setName(e.target.value)
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        dispatch(searchByName(name.trim()))
-        setName('')
-        setNameError(false)
-    }
     const inputValidation = (e) => {
         if (!regex.test(e.target.value)) setNameError(true)
         else setNameError(false)
+    }
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        if (name.length < 3) setNameError(true)
+        else {
+            dispatch(searchByName(name))
+            setName('')
+            setNameError(false)
+        }
     }
 
     return (

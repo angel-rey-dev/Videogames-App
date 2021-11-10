@@ -31,7 +31,7 @@ export default function HomePage() {
     useEffect(() => {
         dispatch(getAllGames())
         dispatch(getAllGenres())
-    }, [dispatch])
+    }, [dispatch]) 
 
 
     return (

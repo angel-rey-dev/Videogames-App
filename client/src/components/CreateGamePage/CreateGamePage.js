@@ -310,7 +310,7 @@ export default function CreateGamePage() {
                                             ))}
                                         </div>
                                         {
-                                            inputError.genres &&
+                                            input.genres.length === 0 &&
                                             <p className="form__error">
                                                 At least one genre must be selected
                                             </p>
@@ -332,7 +332,7 @@ export default function CreateGamePage() {
                                         </div>
 
                                         {
-                                            inputError.platforms &&
+                                            input.platforms.length === 0 &&
                                             <p className="form__error">
                                                 At least one platform must be selected
                                             </p>
