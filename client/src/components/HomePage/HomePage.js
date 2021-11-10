@@ -33,7 +33,6 @@ export default function HomePage() {
         dispatch(getAllGenres())
     }, [dispatch]) 
 
-
     return (
         <div className="main">
             <Navbar
