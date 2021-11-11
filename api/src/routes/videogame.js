@@ -9,7 +9,7 @@ const { API_KEY } = process.env;
 
 // --> GET -->  videogame/:id
 videogameRouter.get("/:id", (req, res) => {
-    let id = req.params.id
+    let id = req.params.id;
     if (typeof id !== "string") id = id.toString();
 
     if (id.length > 10) {
