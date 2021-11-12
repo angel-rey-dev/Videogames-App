@@ -17,13 +17,14 @@ const getApiData = async () => {
         .then(responses => {
             responses.forEach(response => games.push(
                 response.data.results.map(game => {
-                    const { name, background_image, genres, id, rating } = game;
+                    const { name, background_image, genres, id, rating, platforms } = game;
                     return {
                         id,
                         name,
                         background_image,
                         rating,
-                        genres
+                        genres,
+                        platforms: platforms.map(platform => platform.platform.name)
                     }
                 })
             ))

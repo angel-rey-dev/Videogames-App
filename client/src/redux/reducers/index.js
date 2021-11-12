@@ -62,12 +62,16 @@ export default function rootReducer(state = initialState, action) {
         case "FILTER_BY":
             const copyForFilter = [...state.videogames]
             let filteredBy
+            let allGenres = [...state.allGenres];
 
             switch (action.payload) {
                 case "all": filteredBy = copyForFilter; break;
                 case "user": filteredBy = copyForFilter.filter(game => game.createdInDb); break;
                 case "api": filteredBy = copyForFilter.filter(game => !game.createdInDb); break;
-                default: filteredBy = copyForFilter.filter(game => game.genres.some(el => el.name === action.payload)); break;
+                default: filteredBy = allGenres.includes(action.payload)
+                    ? copyForFilter.filter(game => game.genres.some(el => el.name === action.payload))
+                    : copyForFilter;
+                    break;
             }
             return {
                 ...state,

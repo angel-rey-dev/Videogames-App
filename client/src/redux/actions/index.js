@@ -81,14 +81,12 @@ export function getVideogameDetail(id) {
 
     }
 }
-
 export function orderBy(payload) {
     return {
         type: "ORDER_BY",
         payload
     }
 }
-
 export function filterBy(payload) {
     return {
         type: "FILTER_BY",

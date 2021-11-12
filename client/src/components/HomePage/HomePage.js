@@ -2,7 +2,7 @@ import "./HomePage.scss"
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { getAllGames, getAllGenres, orderBy, filterBy } from '../../redux/actions/index'
+import { getAllGames, getAllGenres, orderBy, filterBy, getAllPlatforms } from '../../redux/actions/index'
 import Navbar from "../Navbar/Navbar";
 import Header from '../HeroBanner/Header';
 import Loader from "../Loader/Loader";
@@ -14,6 +14,7 @@ import Footer from '../Footer/Footer';
 export default function HomePage() {
     const dispatch = useDispatch()
     const allGenres = useSelector(state => state.allGenres)
+    const allPlatforms = useSelector(state => state.allPlatforms)
     const allVideogames = useSelector(state => state.allVideogames)
 
     const [currentPage, setCurrentPage] = useState(1)
@@ -31,6 +32,7 @@ export default function HomePage() {
     useEffect(() => {
         dispatch(getAllGames())
         dispatch(getAllGenres())
+        dispatch(getAllPlatforms())
     }, [dispatch]) 
 
     return (
@@ -39,6 +41,7 @@ export default function HomePage() {
                 handleFilterBy={handleFilterBy}
                 handleOrderBy={handleOrderBy}
                 allGenres={allGenres}
+                allPlatforms={allPlatforms}
             />
 
             <Header

@@ -6,7 +6,7 @@ import HandleGames from "../HandleGames/HandleGames";
 import logo from "../../assets/small-logo.svg";
 
 export default function Navbar({
-    handleFilterBy, handleOrderBy, allGenres
+    handleFilterBy, handleOrderBy, allGenres, allPlatforms
 }) {
 
     const [isOpen, setIsOpen] = React.useState(false)
@@ -62,6 +62,7 @@ export default function Navbar({
                 </Link>
 
                 <HandleGames
+                    allPlatforms={allPlatforms}
                     handleFilterBy={handleFilterBy}
                     handleOrderBy={handleOrderBy}
                     allGenres={allGenres}
