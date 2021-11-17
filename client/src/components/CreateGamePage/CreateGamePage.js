@@ -16,7 +16,7 @@ export default function CreateGamePage() {
     const allPlatforms = useSelector(state => state.allPlatforms)
     const regex = {
         name: /^[a-zA-Z0-9\s]{3,50}$/,
-        description: /^[a-zA-Z0-9\s]{3,400}$/,
+        description: /^[(,*.*)a-zA-Z0-9_-\s]{3,400}$/,
         released: /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/,
         rating: /^[1-5]{1}$|^[1-5]{1}[.]{1}[0-9]{1}$/,
         background_image: /^[^\s]*$/
