@@ -63,7 +63,10 @@ export default function DetailPage(props) {
                                 </div>
 
                                 <p className="game__description">
-                                    {videogame[0].description.replace(/<[^>]*>?/g, "") || videogame[0].description}
+                                    {
+                                        id.toString().length > 6
+                                            ? videogame[0].description
+                                            : videogame[0].description.replace(/<[^>]*>?/g, "") || videogame[0].description}
                                 </p>
 
 
