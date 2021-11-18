@@ -14,7 +14,7 @@ import Loader from "../Loader/Loader"
 export default function DetailPage(props) {
     const dispatch = useDispatch()
     let videogame = useSelector(state => state.videogameDetails)
-    const id = props.match.params.id
+    let id = props.match.params.id
 
     useEffect(() => {
         dispatch(getVideogameDetail(id))
