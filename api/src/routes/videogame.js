@@ -13,7 +13,7 @@ videogameRouter.get("/:id", (req, res) => {
     if (typeof id !== "string") id = id.toString();
 
     if (id.length > 10) {
-        axios.get("http://localhost:3001/videogames")
+        axios.get("/videogames")
             .then(response => {
                 let videogame = response.data.find(videogame => videogame.id === id)
                 if (videogame) res.status(200).json(videogame)
